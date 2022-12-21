@@ -767,6 +767,7 @@ import rekammedis.MasterTriaseSkala3;
 import rekammedis.MasterTriaseSkala4;
 import rekammedis.MasterTriaseSkala5;
 import rekammedis.RMDataAsuhanGizi;
+import rekammedis.RMDataCatatanCekGDS;
 import rekammedis.RMDataCatatanKeperawatanRanap;
 import rekammedis.RMDataCatatanObservasiIGD;
 import rekammedis.RMDataCatatanObservasiRanap;
@@ -19468,6 +19469,18 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         this.setCursor(Cursor.getDefaultCursor());
     }
     
+    private void btnCatatanCekGDSActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMDataCatatanCekGDS aplikasi=new RMDataCatatanCekGDS(this,false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        aplikasi.isCek();
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
     /**
     * @param args the command line arguments
     */
@@ -20126,7 +20139,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             btnPenilaianRisikoJatuhAnak,btnPenilaianAwalMedisRalanGeriatri,btnPenilaianTambahanGeriatri,btnSkriningNutrisiDewasa,btnHasilPemeriksaanUSG,
             btnSkriningNutrisiLansia,btnSkriningNutrisiAnak,btnAkunRekeningHtHBankJabar,btnPembayaranBankJabar,btnPernyataanPasienUmum,btnKonselingFarmasi,
             btnPelayananInformasiObat,btnPersetujuanUmum,btnTransferPasienAntarRuang,btnReferensiDokterSatuSehat,btnReferensiPasienSatuSehat,
-            btnMappingOrganisasiSatuSehat,btnMappingLokasiSatuSehat,btnKirimEncounterSatuSehat;
+            btnMappingOrganisasiSatuSehat,btnMappingLokasiSatuSehat,btnKirimEncounterSatuSehat,btnCatatanCekGDS;
     
     public void isWall(){
         try{            
@@ -23511,6 +23524,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             
             if(akses.gettransfer_pasien_antar_ruang()==true){
                 Panelmenu.add(btnTransferPasienAntarRuang);
+                jmlmenu++;
+            }
+            
+            if(akses.getcatatan_cek_gds()==true){
+                Panelmenu.add(btnCatatanCekGDS);
                 jmlmenu++;
             }
         }else if(cmbMenu.getSelectedIndex()==12){  
@@ -27961,6 +27979,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         
         if(akses.gettransfer_pasien_antar_ruang()==true){
             Panelmenu.add(btnTransferPasienAntarRuang);
+            jmlmenu++;
+        }
+        
+        if(akses.getcatatan_cek_gds()==true){
+            Panelmenu.add(btnCatatanCekGDS);
             jmlmenu++;
         }
 
@@ -33713,6 +33736,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             }                
         }
         
+        if(akses.getcatatan_cek_gds()==true){
+            if(btnCatatanCekGDS.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnCatatanCekGDS);
+                jmlmenu++;
+            }                
+        }
+        
         if(akses.getpengambilan_utd2()==true){
             if(btnPengambilanUTD2.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnPengambilanUTD2); 
@@ -38810,6 +38840,14 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         btnKirimEncounterSatuSehat.setName("btnKirimEncounterSatuSehat"); 
         btnKirimEncounterSatuSehat.setPreferredSize(new java.awt.Dimension(200, 90));
         btnKirimEncounterSatuSehat.addActionListener(this::btnKirimEncounterSatuSehatActionPerformed);
+        
+        btnCatatanCekGDS = new widget.ButtonBig();
+        btnCatatanCekGDS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/6427847_information_note_notebook_sheet_icon.png")));
+        btnCatatanCekGDS.setText("Catatan Cek GDS");
+        btnCatatanCekGDS.setIconTextGap(0);
+        btnCatatanCekGDS.setName("btnCatatanCekGDS"); 
+        btnCatatanCekGDS.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnCatatanCekGDS.addActionListener(this::btnCatatanCekGDSActionPerformed);
     }
     
 }
