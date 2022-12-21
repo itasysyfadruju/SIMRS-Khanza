@@ -8859,9 +8859,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='middle' width='23%' bgcolor='#FFFAF8' rowspan='2'>Perawat/Paramedis</td>"+
                                  "</tr>"+
                                  "<tr align='center'>"+
-                                    "<td valign='top' width='10%' bgcolor='#FFFAF8'>GDP</td>"+
-                                    "<td valign='top' width='23%' bgcolor='#FFFAF8'>Insulin</td>"+
-                                    "<td valign='top' width='23%' bgcolor='#FFFAF8'>Obat Gula</td>"+
+                                    "<td valign='top' width='6%' bgcolor='#FFFAF8'>GDP</td>"+
+                                    "<td valign='top' width='26%' bgcolor='#FFFAF8'>Insulin</td>"+
+                                    "<td valign='top' width='26%' bgcolor='#FFFAF8'>Obat Gula</td>"+
                                  "</tr>"
                         );
                         rs2.beforeFirst();
