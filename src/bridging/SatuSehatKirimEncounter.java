@@ -433,7 +433,6 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             BtnCariActionPerformed(null);
-            BtnPrint.requestFocus();
         }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
             BtnCariActionPerformed(null);
         }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
@@ -536,10 +535,9 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
                         root = mapper.readTree(json);
                         response = root.path("id");
                         if(!response.asText().equals("")){
-                            if(Sequel.menyimpantf("satu_sehat_encounter","?,?","No.Rawat",2,new String[]{
-                                    tbKamar.getValueAt(i,2).toString(),response.asText()
-                                })==true){
-                            }
+                            Sequel.menyimpan("satu_sehat_encounter","?,?","No.Rawat",2,new String[]{
+                                tbKamar.getValueAt(i,2).toString(),response.asText()
+                            });
                         }
                     }catch(Exception e){
                         System.out.println("Notifikasi Bridging : "+e);

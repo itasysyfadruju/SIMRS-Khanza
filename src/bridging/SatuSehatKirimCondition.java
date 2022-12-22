@@ -417,7 +417,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
                 param.put("parameter","%"+TCari.getText().trim()+"%");
                 param.put("tanggal1",Valid.SetTgl(DTPCari1.getSelectedItem()+""));
                 param.put("tanggal2",Valid.SetTgl(DTPCari2.getSelectedItem()+""));
-                Valid.MyReport("rptKirimEncounterSatuSehat.jasper","report","::[ Kirim Data Encounter Satu Sehat Kemenkes ]::",param);            
+                Valid.MyReport("rptKirimConditionSatuSehat.jasper","report","::[ Kirim Data Condition Satu Sehat Kemenkes ]::",param);            
         }
         this.setCursor(Cursor.getDefaultCursor());       
     }//GEN-LAST:event_BtnPrintActionPerformed
@@ -425,7 +425,6 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             BtnCariActionPerformed(null);
-            BtnPrint.requestFocus();
         }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
             BtnCariActionPerformed(null);
         }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
@@ -451,87 +450,64 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
 
     private void BtnKirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimActionPerformed
         for(i=0;i<tbKamar.getRowCount();i++){
-            if(tbKamar.getValueAt(i,0).toString().equals("true")&&(!tbKamar.getValueAt(i,5).toString().equals(""))&&(!tbKamar.getValueAt(i,8).toString().equals(""))&&tbKamar.getValueAt(i,15).toString().equals("")){
+            if(tbKamar.getValueAt(i,0).toString().equals("true")&&(!tbKamar.getValueAt(i,5).toString().equals(""))&&(!tbKamar.getValueAt(i,9).toString().equals(""))&&tbKamar.getValueAt(i,12).toString().equals("")){
                 try {
-                    iddokter=cekViaSatuSehat.tampilIDParktisi(tbKamar.getValueAt(i,8).toString());
                     idpasien=cekViaSatuSehat.tampilIDPasien(tbKamar.getValueAt(i,5).toString());
                     try{
                         headers = new HttpHeaders();
                         headers.setContentType(MediaType.APPLICATION_JSON);
                         headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
                         json = "{" +
-                                    "\"resourceType\": \"Encounter\"," +
-                                    "\"status\": \"finished\"," +
-                                    "\"class\": {" +
-                                        "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\"," +
-                                        "\"code\": \""+(tbKamar.getValueAt(i,11).toString().equals("Ralan")?"AMB":"IMP")+"\"," +
-                                        "\"display\": \""+(tbKamar.getValueAt(i,11).toString().equals("Ralan")?"ambulatory":"inpatient encounter")+"\"" +
+                                    "\"resourceType\": \"Condition\"," +
+                                    "\"clinicalStatus\": {" +
+                                        "\"coding\": [" +
+                                            "{" +
+                                                "\"system\": \"http://terminology.hl7.org/CodeSystem/condition-clinical\"," +
+                                                "\"code\": \"active\"," +
+                                                "\"display\": \"Active\"" +
+                                            "}" +
+                                        "]" +
+                                    "}," +
+                                    "\"category\": [" +
+                                        "{" +
+                                            "\"coding\": [" +
+                                                "{" +
+                                                    "\"system\": \"http://terminology.hl7.org/CodeSystem/condition-category\"," +
+                                                    "\"code\": \"encounter-diagnosis\"," +
+                                                    "\"display\": \"Encounter Diagnosis\"" +
+                                                "}" +
+                                            "]" +
+                                        "}" +
+                                    "]," +
+                                    "\"code\": {" +
+                                        "\"coding\": [" +
+                                            "{" +
+                                                "\"system\": \"http://hl7.org/fhir/sid/icd-10\"," +
+                                                "\"code\": \""+tbKamar.getValueAt(i,10).toString()+"\"," +
+                                                "\"display\": \""+tbKamar.getValueAt(i,11).toString()+"\"" +
+                                            "}" +
+                                        "]" +
                                     "}," +
                                     "\"subject\": {" +
                                         "\"reference\": \"Patient/"+idpasien+"\"," +
                                         "\"display\": \""+tbKamar.getValueAt(i,4).toString()+"\"" +
                                     "}," +
-                                    "\"participant\": [" +
-                                        "{" +
-                                            "\"type\": [" +
-                                                "{" +
-                                                    "\"coding\": [" +
-                                                        "{" +
-                                                            "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ParticipationType\"," +
-                                                            "\"code\": \"ATND\"," +
-                                                            "\"display\": \"attender\"" +
-                                                        "}" +
-                                                    "]" +
-                                                "}" +
-                                            "]," +
-                                            "\"individual\": {" +
-                                                "\"reference\": \"Practitioner/"+iddokter+"\"," +
-                                                "\"display\": \""+tbKamar.getValueAt(i,7).toString()+"\"" +
-                                            "}" +
-                                        "}" +
-                                    "]," +
-                                    "\"period\": {" +
-                                        "\"start\": \""+tbKamar.getValueAt(i,1).toString()+"\"" +
-                                    "}," +
-                                    "\"location\": [" +
-                                        "{" +
-                                            "\"location\": {" +
-                                                "\"reference\": \"Location/"+tbKamar.getValueAt(i,11).toString()+"\"," +
-                                                "\"display\": \""+tbKamar.getValueAt(i,10).toString()+"\"" +
-                                            "}" +
-                                        "}" +
-                                    "]," +
-                                    "\"statusHistory\": [" +
-                                        "{" +
-                                            "\"status\": \"finished\"," +
-                                            "\"period\": {" +
-                                                "\"start\": \""+tbKamar.getValueAt(i,1).toString()+"\"," +
-                                                "\"end\": \""+tbKamar.getValueAt(i,14).toString()+"\"" +
-                                            "}" +
-                                        "}" +
-                                    "]," +
-                                    "\"serviceProvider\": {" +
-                                        "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"" +
-                                    "}," +
-                                    "\"identifier\": [" +
-                                        "{" +
-                                            "\"system\": \"http://sys-ids.kemkes.go.id/encounter/"+koneksiDB.IDSATUSEHAT()+"\"," +
-                                            "\"value\": \""+tbKamar.getValueAt(i,2).toString()+"\"" +
-                                        "}" +
-                                    "]" +
+                                    "\"encounter\": {" +
+                                        "\"reference\": \"Encounter/"+tbKamar.getValueAt(i,9).toString()+"\"," +
+                                        "\"display\": \"Kunjungan "+tbKamar.getValueAt(i,4).toString()+" pada tanggal "+tbKamar.getValueAt(i,1).toString()+"\"" +
+                                    "}" +
                                 "}";
-                        System.out.println("URL : "+link+"/Encounter");
+                        System.out.println("URL : "+link+"/Condition");
                         System.out.println("Request JSON : "+json);
                         requestEntity = new HttpEntity(json,headers);
-                        json=api.getRest().exchange(link+"/Encounter", HttpMethod.POST, requestEntity, String.class).getBody();
+                        json=api.getRest().exchange(link+"/Condition", HttpMethod.POST, requestEntity, String.class).getBody();
                         System.out.println("Result JSON : "+json);
                         root = mapper.readTree(json);
                         response = root.path("id");
                         if(!response.asText().equals("")){
-                            if(Sequel.menyimpantf("satu_sehat_encounter","?,?","No.Rawat",2,new String[]{
-                                    tbKamar.getValueAt(i,2).toString(),response.asText()
-                                })==true){
-                            }
+                            Sequel.menyimpan("satu_sehat_condition","?,?,?,?","Diagnosa",4,new String[]{
+                                tbKamar.getValueAt(i,2).toString(),tbKamar.getValueAt(i,10).toString(),tbKamar.getValueAt(i,7).toString(),response.asText()
+                            });
                         }
                     }catch(Exception e){
                         System.out.println("Notifikasi Bridging : "+e);
@@ -558,80 +534,58 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
 
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
         for(i=0;i<tbKamar.getRowCount();i++){
-            if(tbKamar.getValueAt(i,0).toString().equals("true")&&(!tbKamar.getValueAt(i,5).toString().equals(""))&&(!tbKamar.getValueAt(i,8).toString().equals(""))&&(!tbKamar.getValueAt(i,15).toString().equals(""))){
+            if(tbKamar.getValueAt(i,0).toString().equals("true")&&(!tbKamar.getValueAt(i,5).toString().equals(""))&&(!tbKamar.getValueAt(i,9).toString().equals(""))&&(!tbKamar.getValueAt(i,12).toString().equals(""))){
                 try {
-                    iddokter=cekViaSatuSehat.tampilIDParktisi(tbKamar.getValueAt(i,8).toString());
                     idpasien=cekViaSatuSehat.tampilIDPasien(tbKamar.getValueAt(i,5).toString());
                     try{
                         headers = new HttpHeaders();
                         headers.setContentType(MediaType.APPLICATION_JSON);
                         headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
                         json = "{" +
-                                    "\"resourceType\": \"Encounter\"," +
-                                    "\"id\": \""+tbKamar.getValueAt(i,15).toString()+"\"," +
-                                    "\"identifier\": [" +
+                                    "\"resourceType\": \"Condition\"," +
+                                    "\"id\": \""+tbKamar.getValueAt(i,12).toString()+"\"," +
+                                    "\"clinicalStatus\": {" +
+                                        "\"coding\": [" +
+                                            "{" +
+                                                "\"system\": \"http://terminology.hl7.org/CodeSystem/condition-clinical\"," +
+                                                "\"code\": \"active\"," +
+                                                "\"display\": \"Active\"" +
+                                            "}" +
+                                        "]" +
+                                    "}," +
+                                    "\"category\": [" +
                                         "{" +
-                                            "\"system\": \"http://sys-ids.kemkes.go.id/encounter/"+koneksiDB.IDSATUSEHAT()+"\"," +
-                                            "\"value\": \""+tbKamar.getValueAt(i,2).toString()+"\"" +
+                                            "\"coding\": [" +
+                                                "{" +
+                                                    "\"system\": \"http://terminology.hl7.org/CodeSystem/condition-category\"," +
+                                                    "\"code\": \"encounter-diagnosis\"," +
+                                                    "\"display\": \"Encounter Diagnosis\"" +
+                                                "}" +
+                                            "]" +
                                         "}" +
                                     "]," +
-                                    "\"status\": \"finished\"," +
-                                    "\"class\": {" +
-                                        "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\"," +
-                                        "\"code\": \""+(tbKamar.getValueAt(i,11).toString().equals("Ralan")?"AMB":"IMP")+"\"," +
-                                        "\"display\": \""+(tbKamar.getValueAt(i,11).toString().equals("Ralan")?"ambulatory":"inpatient encounter")+"\"" +
+                                    "\"code\": {" +
+                                        "\"coding\": [" +
+                                            "{" +
+                                                "\"system\": \"http://hl7.org/fhir/sid/icd-10\"," +
+                                                "\"code\": \""+tbKamar.getValueAt(i,10).toString()+"\"," +
+                                                "\"display\": \""+tbKamar.getValueAt(i,11).toString()+"\"" +
+                                            "}" +
+                                        "]" +
                                     "}," +
                                     "\"subject\": {" +
                                         "\"reference\": \"Patient/"+idpasien+"\"," +
                                         "\"display\": \""+tbKamar.getValueAt(i,4).toString()+"\"" +
                                     "}," +
-                                    "\"participant\": [" +
-                                        "{" +
-                                            "\"type\": [" +
-                                                "{" +
-                                                    "\"coding\": [" +
-                                                        "{" +
-                                                            "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ParticipationType\"," +
-                                                            "\"code\": \"ATND\"," +
-                                                            "\"display\": \"attender\"" +
-                                                        "}" +
-                                                    "]" +
-                                                "}" +
-                                            "]," +
-                                            "\"individual\": {" +
-                                                "\"reference\": \"Practitioner/"+iddokter+"\"," +
-                                                "\"display\": \""+tbKamar.getValueAt(i,7).toString()+"\"" +
-                                            "}" +
-                                        "}" +
-                                    "]," +
-                                    "\"period\": {" +
-                                        "\"start\": \""+tbKamar.getValueAt(i,1).toString()+"\"" +
-                                    "}," +
-                                    "\"location\": [" +
-                                        "{" +
-                                            "\"location\": {" +
-                                                "\"reference\": \"Location/"+tbKamar.getValueAt(i,11).toString()+"\"," +
-                                                "\"display\": \""+tbKamar.getValueAt(i,10).toString()+"\"" +
-                                            "}" +
-                                        "}" +
-                                    "]," +
-                                    "\"statusHistory\": [" +
-                                        "{" +
-                                            "\"status\": \"finished\"," +
-                                            "\"period\": {" +
-                                                "\"start\": \""+tbKamar.getValueAt(i,1).toString()+"\"," +
-                                                "\"end\": \""+tbKamar.getValueAt(i,14).toString()+"\"" +
-                                            "}" +
-                                        "}" +
-                                    "]," +
-                                    "\"serviceProvider\": {" +
-                                        "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"" +
+                                    "\"encounter\": {" +
+                                        "\"reference\": \"Encounter/"+tbKamar.getValueAt(i,9).toString()+"\"," +
+                                        "\"display\": \"Kunjungan "+tbKamar.getValueAt(i,4).toString()+" pada tanggal "+tbKamar.getValueAt(i,1).toString()+"\"" +
                                     "}" +
                                 "}";
-                        System.out.println("URL : "+link+"/Encounter/"+tbKamar.getValueAt(i,15).toString());
+                        System.out.println("URL : "+link+"/Condition/"+tbKamar.getValueAt(i,15).toString());
                         System.out.println("Request JSON : "+json);
                         requestEntity = new HttpEntity(json,headers);
-                        json=api.getRest().exchange(link+"/Encounter/"+tbKamar.getValueAt(i,15).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
+                        json=api.getRest().exchange(link+"/Condition/"+tbKamar.getValueAt(i,15).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
                         System.out.println("Result JSON : "+json);
                     }catch(Exception e){
                         System.out.println("Notifikasi Bridging : "+e);
