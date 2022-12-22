@@ -455,6 +455,7 @@ import bridging.MobileJKNPembatalanPendaftaran;
 import bridging.MobileJKNReferensiPendaftaran;
 import bridging.PCareCekKartu;
 import bridging.PCareCekReferensiTACC;
+import bridging.SatuSehatKirimCondition;
 import bridging.SatuSehatKirimEncounter;
 import bridging.SatuSehatMapingLokasi;
 import bridging.SatuSehatMapingOrganisasi;
@@ -19481,6 +19482,18 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         this.setCursor(Cursor.getDefaultCursor());
     }
     
+    private void btnKirimConditionSatuSehatActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        SatuSehatKirimCondition aplikasi=new SatuSehatKirimCondition(this,false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        aplikasi.isCek();
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
     /**
     * @param args the command line arguments
     */
@@ -20139,7 +20152,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             btnPenilaianRisikoJatuhAnak,btnPenilaianAwalMedisRalanGeriatri,btnPenilaianTambahanGeriatri,btnSkriningNutrisiDewasa,btnHasilPemeriksaanUSG,
             btnSkriningNutrisiLansia,btnSkriningNutrisiAnak,btnAkunRekeningHtHBankJabar,btnPembayaranBankJabar,btnPernyataanPasienUmum,btnKonselingFarmasi,
             btnPelayananInformasiObat,btnPersetujuanUmum,btnTransferPasienAntarRuang,btnReferensiDokterSatuSehat,btnReferensiPasienSatuSehat,
-            btnMappingOrganisasiSatuSehat,btnMappingLokasiSatuSehat,btnKirimEncounterSatuSehat,btnCatatanCekGDS;
+            btnMappingOrganisasiSatuSehat,btnMappingLokasiSatuSehat,btnKirimEncounterSatuSehat,btnCatatanCekGDS,btnKirimConditionSatuSehat;
     
     public void isWall(){
         try{            
@@ -22987,6 +23000,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             
             if(akses.getsatu_sehat_kirim_encounter()==true){
                 Panelmenu.add(btnKirimEncounterSatuSehat);
+                jmlmenu++;
+            }
+            
+            if(akses.getsatu_sehat_kirim_condition()==true){
+                Panelmenu.add(btnKirimConditionSatuSehat);
                 jmlmenu++;
             }
         }else if(cmbMenu.getSelectedIndex()==11){ 
@@ -27443,6 +27461,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         
         if(akses.getsatu_sehat_kirim_encounter()==true){
             Panelmenu.add(btnKirimEncounterSatuSehat);
+            jmlmenu++;
+        }
+        
+        if(akses.getsatu_sehat_kirim_condition()==true){
+            Panelmenu.add(btnKirimConditionSatuSehat);
             jmlmenu++;
         }
 
@@ -32984,6 +33007,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         if(akses.getsatu_sehat_kirim_encounter()==true){
             if(btnKirimEncounterSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnKirimEncounterSatuSehat);
+                jmlmenu++;
+            }                
+        }
+        
+        if(akses.getsatu_sehat_kirim_condition()==true){
+            if(btnKirimConditionSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnKirimConditionSatuSehat);
                 jmlmenu++;
             }                
         }
@@ -38848,6 +38878,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         btnCatatanCekGDS.setName("btnCatatanCekGDS"); 
         btnCatatanCekGDS.setPreferredSize(new java.awt.Dimension(200, 90));
         btnCatatanCekGDS.addActionListener(this::btnCatatanCekGDSActionPerformed);
+        
+        btnKirimConditionSatuSehat = new widget.ButtonBig();
+        btnKirimConditionSatuSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/satusehat.png")));
+        btnKirimConditionSatuSehat.setText("Kirim Condition Satu Sehat");
+        btnKirimConditionSatuSehat.setIconTextGap(0);
+        btnKirimConditionSatuSehat.setName("btnKirimConditionSatuSehat"); 
+        btnKirimConditionSatuSehat.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnKirimConditionSatuSehat.addActionListener(this::btnKirimConditionSatuSehatActionPerformed);
     }
-    
 }

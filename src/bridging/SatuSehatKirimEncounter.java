@@ -1,6 +1,5 @@
 /*
-  Kontribusi dari Mas Abdul Wahid RSUD Cipayung & Mas Fanji dari RSUD Kramatjati 
-  
+  by Mas Elkhanza
  */
 
 package bridging;
