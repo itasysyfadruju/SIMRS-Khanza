@@ -582,10 +582,10 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
                                         "\"display\": \"Kunjungan "+tbKamar.getValueAt(i,4).toString()+" pada tanggal "+tbKamar.getValueAt(i,1).toString()+"\"" +
                                     "}" +
                                 "}";
-                        System.out.println("URL : "+link+"/Condition/"+tbKamar.getValueAt(i,15).toString());
+                        System.out.println("URL : "+link+"/Condition/"+tbKamar.getValueAt(i,12).toString());
                         System.out.println("Request JSON : "+json);
                         requestEntity = new HttpEntity(json,headers);
-                        json=api.getRest().exchange(link+"/Condition/"+tbKamar.getValueAt(i,15).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
+                        json=api.getRest().exchange(link+"/Condition/"+tbKamar.getValueAt(i,12).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
                         System.out.println("Result JSON : "+json);
                     }catch(Exception e){
                         System.out.println("Notifikasi Bridging : "+e);
