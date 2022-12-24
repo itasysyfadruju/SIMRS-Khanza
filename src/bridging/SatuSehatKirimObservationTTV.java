@@ -167,8 +167,6 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         ppPilihSemua = new javax.swing.JMenuItem();
         ppBersihkan = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
-        Scroll = new widget.ScrollPane();
-        tbKamar = new widget.Table();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
         jLabel7 = new widget.Label();
@@ -185,6 +183,21 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         jLabel16 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
+        TabRawat = new javax.swing.JTabbedPane();
+        Scroll = new widget.ScrollPane();
+        tbKamar = new widget.Table();
+        Scroll1 = new widget.ScrollPane();
+        tbKamar1 = new widget.Table();
+        Scroll2 = new widget.ScrollPane();
+        tbKamar2 = new widget.Table();
+        Scroll3 = new widget.ScrollPane();
+        tbKamar3 = new widget.Table();
+        Scroll4 = new widget.ScrollPane();
+        tbKamar4 = new widget.Table();
+        Scroll5 = new widget.ScrollPane();
+        tbKamar5 = new widget.Table();
+        Scroll6 = new widget.ScrollPane();
+        tbKamar6 = new widget.Table();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -230,17 +243,6 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         internalFrame1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
-
-        Scroll.setComponentPopupMenu(jPopupMenu1);
-        Scroll.setName("Scroll"); // NOI18N
-        Scroll.setOpaque(true);
-
-        tbKamar.setAutoCreateRowSorter(true);
-        tbKamar.setComponentPopupMenu(jPopupMenu1);
-        tbKamar.setName("tbKamar"); // NOI18N
-        Scroll.setViewportView(tbKamar);
-
-        internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
 
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setOpaque(false);
@@ -384,6 +386,96 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         jPanel3.add(panelGlass9, java.awt.BorderLayout.PAGE_START);
 
         internalFrame1.add(jPanel3, java.awt.BorderLayout.PAGE_END);
+
+        TabRawat.setBackground(new java.awt.Color(255, 255, 254));
+        TabRawat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(241, 246, 236)));
+        TabRawat.setForeground(new java.awt.Color(50, 50, 50));
+        TabRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        TabRawat.setName("TabRawat"); // NOI18N
+        TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabRawatMouseClicked(evt);
+            }
+        });
+
+        Scroll.setComponentPopupMenu(jPopupMenu1);
+        Scroll.setName("Scroll"); // NOI18N
+        Scroll.setOpaque(true);
+
+        tbKamar.setAutoCreateRowSorter(true);
+        tbKamar.setComponentPopupMenu(jPopupMenu1);
+        tbKamar.setName("tbKamar"); // NOI18N
+        Scroll.setViewportView(tbKamar);
+
+        TabRawat.addTab("Suhu (°C)", Scroll);
+
+        Scroll1.setComponentPopupMenu(jPopupMenu1);
+        Scroll1.setName("Scroll1"); // NOI18N
+        Scroll1.setOpaque(true);
+
+        tbKamar1.setAutoCreateRowSorter(true);
+        tbKamar1.setComponentPopupMenu(jPopupMenu1);
+        tbKamar1.setName("tbKamar1"); // NOI18N
+        Scroll1.setViewportView(tbKamar1);
+
+        TabRawat.addTab("Respirasi (/menit)", Scroll1);
+
+        Scroll2.setComponentPopupMenu(jPopupMenu1);
+        Scroll2.setName("Scroll2"); // NOI18N
+        Scroll2.setOpaque(true);
+
+        tbKamar2.setAutoCreateRowSorter(true);
+        tbKamar2.setComponentPopupMenu(jPopupMenu1);
+        tbKamar2.setName("tbKamar2"); // NOI18N
+        Scroll2.setViewportView(tbKamar2);
+
+        TabRawat.addTab("Nadi (/menit)", Scroll2);
+
+        Scroll3.setComponentPopupMenu(jPopupMenu1);
+        Scroll3.setName("Scroll3"); // NOI18N
+        Scroll3.setOpaque(true);
+
+        tbKamar3.setAutoCreateRowSorter(true);
+        tbKamar3.setComponentPopupMenu(jPopupMenu1);
+        tbKamar3.setName("tbKamar3"); // NOI18N
+        Scroll3.setViewportView(tbKamar3);
+
+        TabRawat.addTab("SpO2 (%)", Scroll3);
+
+        Scroll4.setComponentPopupMenu(jPopupMenu1);
+        Scroll4.setName("Scroll4"); // NOI18N
+        Scroll4.setOpaque(true);
+
+        tbKamar4.setAutoCreateRowSorter(true);
+        tbKamar4.setComponentPopupMenu(jPopupMenu1);
+        tbKamar4.setName("tbKamar4"); // NOI18N
+        Scroll4.setViewportView(tbKamar4);
+
+        TabRawat.addTab("GCS (E,V,M)", Scroll4);
+
+        Scroll5.setComponentPopupMenu(jPopupMenu1);
+        Scroll5.setName("Scroll5"); // NOI18N
+        Scroll5.setOpaque(true);
+
+        tbKamar5.setAutoCreateRowSorter(true);
+        tbKamar5.setComponentPopupMenu(jPopupMenu1);
+        tbKamar5.setName("tbKamar5"); // NOI18N
+        Scroll5.setViewportView(tbKamar5);
+
+        TabRawat.addTab("Kesadaran", Scroll5);
+
+        Scroll6.setComponentPopupMenu(jPopupMenu1);
+        Scroll6.setName("Scroll6"); // NOI18N
+        Scroll6.setOpaque(true);
+
+        tbKamar6.setAutoCreateRowSorter(true);
+        tbKamar6.setComponentPopupMenu(jPopupMenu1);
+        tbKamar6.setName("tbKamar6"); // NOI18N
+        Scroll6.setViewportView(tbKamar6);
+
+        TabRawat.addTab("Tensi (mmHg)", Scroll6);
+
+        internalFrame1.add(TabRawat, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
 
@@ -598,6 +690,12 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         tampil();
     }//GEN-LAST:event_BtnUpdateActionPerformed
 
+    private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
+        if(TabRawat.getSelectedIndex()==0){
+            tampil();
+        }
+    }//GEN-LAST:event_TabRawatMouseClicked
+
     /**
     * @param args the command line arguments
     */
@@ -624,7 +722,14 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
     private widget.Tanggal DTPCari2;
     private widget.Label LCount;
     private widget.ScrollPane Scroll;
+    private widget.ScrollPane Scroll1;
+    private widget.ScrollPane Scroll2;
+    private widget.ScrollPane Scroll3;
+    private widget.ScrollPane Scroll4;
+    private widget.ScrollPane Scroll5;
+    private widget.ScrollPane Scroll6;
     private widget.TextBox TCari;
+    private javax.swing.JTabbedPane TabRawat;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel15;
     private widget.Label jLabel16;
@@ -637,6 +742,12 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
     private javax.swing.JMenuItem ppBersihkan;
     private javax.swing.JMenuItem ppPilihSemua;
     private widget.Table tbKamar;
+    private widget.Table tbKamar1;
+    private widget.Table tbKamar2;
+    private widget.Table tbKamar3;
+    private widget.Table tbKamar4;
+    private widget.Table tbKamar5;
+    private widget.Table tbKamar6;
     // End of variables declaration//GEN-END:variables
     
     private void tampil() {
