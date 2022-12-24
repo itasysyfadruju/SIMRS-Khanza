@@ -721,12 +721,12 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="widget.TextBox" name="SN">
+                    <Component class="widget.TextBox" name="SNCN">
                       <Properties>
                         <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
                           <ComponentRef name="null"/>
                         </Property>
-                        <Property name="name" type="java.lang.String" value="SN" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="SNCN" noResource="true"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1069,12 +1069,12 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="widget.TextBox" name="KdPetugas5">
+                    <Component class="widget.TextBox" name="Tindakan">
                       <Properties>
                         <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
                           <ComponentRef name="null"/>
                         </Property>
-                        <Property name="name" type="java.lang.String" value="KdPetugas5" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="Tindakan" noResource="true"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

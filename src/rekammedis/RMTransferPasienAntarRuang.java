@@ -377,7 +377,7 @@ public final class RMTransferPasienAntarRuang extends javax.swing.JDialog {
         label15 = new widget.Label();
         KdPetugasMenerima = new widget.TextBox();
         NmPetugasMenerima = new widget.TextBox();
-        BtnDokter1 = new widget.Button();
+        BtnMenerima = new widget.Button();
         label16 = new widget.Label();
         internalFrame3 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
@@ -646,7 +646,7 @@ public final class RMTransferPasienAntarRuang extends javax.swing.JDialog {
         jLabel11.setBounds(740, 10, 30, 23);
 
         TanggalMasuk.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2022 14:23:10" }));
+        TanggalMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-12-2022 14:42:06" }));
         TanggalMasuk.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TanggalMasuk.setName("TanggalMasuk"); // NOI18N
         TanggalMasuk.setOpaque(false);
@@ -665,7 +665,7 @@ public final class RMTransferPasienAntarRuang extends javax.swing.JDialog {
         label12.setBounds(201, 40, 55, 23);
 
         TanggalPindah.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalPindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2022 14:23:11" }));
+        TanggalPindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-12-2022 14:42:07" }));
         TanggalPindah.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TanggalPindah.setName("TanggalPindah"); // NOI18N
         TanggalPindah.setOpaque(false);
@@ -1293,23 +1293,23 @@ public final class RMTransferPasienAntarRuang extends javax.swing.JDialog {
         FormInput.add(NmPetugasMenerima);
         NmPetugasMenerima.setBounds(645, 630, 180, 23);
 
-        BtnDokter1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDokter1.setMnemonic('2');
-        BtnDokter1.setToolTipText("Alt+2");
-        BtnDokter1.setName("BtnDokter1"); // NOI18N
-        BtnDokter1.setPreferredSize(new java.awt.Dimension(28, 23));
-        BtnDokter1.addActionListener(new java.awt.event.ActionListener() {
+        BtnMenerima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnMenerima.setMnemonic('2');
+        BtnMenerima.setToolTipText("Alt+2");
+        BtnMenerima.setName("BtnMenerima"); // NOI18N
+        BtnMenerima.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnMenerima.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnDokter1ActionPerformed(evt);
+                BtnMenerimaActionPerformed(evt);
             }
         });
-        BtnDokter1.addKeyListener(new java.awt.event.KeyAdapter() {
+        BtnMenerima.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnDokter1KeyPressed(evt);
+                BtnMenerimaKeyPressed(evt);
             }
         });
-        FormInput.add(BtnDokter1);
-        BtnDokter1.setBounds(827, 630, 28, 23);
+        FormInput.add(BtnMenerima);
+        BtnMenerima.setBounds(827, 630, 28, 23);
 
         label16.setText("Menyerahkan :");
         label16.setName("label16"); // NOI18N
@@ -1357,7 +1357,7 @@ public final class RMTransferPasienAntarRuang extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2022" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-12-2022" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1371,7 +1371,7 @@ public final class RMTransferPasienAntarRuang extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2022" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-12-2022" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1516,7 +1516,7 @@ public final class RMTransferPasienAntarRuang extends javax.swing.JDialog {
         }else if(NmPetugasMenerima.getText().trim().equals("")){
             Valid.textKosong(BtnDokter,"Petugas Yang Menerima");
         }else if(AsalRuang.getText().trim().equals("")){
-            Valid.textKosong(BtnDokter1,"Petugas Yang Menerima");
+            Valid.textKosong(BtnMenerima,"Petugas Yang Menerima");
         }else if(AsalRuang.getText().trim().equals("")){
             Valid.textKosong(AsalRuang,"Asal Ruang");
         }else if(RuangSelanjutnya.getText().trim().equals("")){
@@ -1561,11 +1561,11 @@ public final class RMTransferPasienAntarRuang extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
     private void BtnSimpanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSimpanKeyPressed
-        /*if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             BtnSimpanActionPerformed(null);
         }else{
-            Valid.pindah(evt,Kesimpulanpsikolog,BtnBatal);
-        }*/
+            Valid.pindah(evt,BtnMenerima,BtnBatal);
+        }
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
@@ -1611,7 +1611,7 @@ public final class RMTransferPasienAntarRuang extends javax.swing.JDialog {
         }else if(NmPetugasMenerima.getText().trim().equals("")){
             Valid.textKosong(BtnDokter,"Petugas Yang Menerima");
         }else if(AsalRuang.getText().trim().equals("")){
-            Valid.textKosong(BtnDokter1,"Petugas Yang Menerima");
+            Valid.textKosong(BtnMenerima,"Petugas Yang Menerima");
         }else if(AsalRuang.getText().trim().equals("")){
             Valid.textKosong(AsalRuang,"Asal Ruang");
         }else if(RuangSelanjutnya.getText().trim().equals("")){
@@ -2103,21 +2103,21 @@ public final class RMTransferPasienAntarRuang extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnDokterActionPerformed
 
     private void BtnDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnDokterKeyPressed
-        Valid.pindah(evt,KeluhanUtamaSetelahTransfer,BtnDokter1);
+        Valid.pindah(evt,KeluhanUtamaSetelahTransfer,BtnMenerima);
     }//GEN-LAST:event_BtnDokterKeyPressed
 
-    private void BtnDokter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDokter1ActionPerformed
+    private void BtnMenerimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMenerimaActionPerformed
         pilihan=2;
         petugas.isCek();
         petugas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
         petugas.setLocationRelativeTo(internalFrame1);
         petugas.setAlwaysOnTop(false);
         petugas.setVisible(true);
-    }//GEN-LAST:event_BtnDokter1ActionPerformed
+    }//GEN-LAST:event_BtnMenerimaActionPerformed
 
-    private void BtnDokter1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnDokter1KeyPressed
+    private void BtnMenerimaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnMenerimaKeyPressed
         Valid.pindah(evt,KeluhanUtamaSetelahTransfer,BtnSimpan);
-    }//GEN-LAST:event_BtnDokter1KeyPressed
+    }//GEN-LAST:event_BtnMenerimaKeyPressed
 
     private void ChkAccorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkAccorActionPerformed
         if(tbObat.getSelectedRow()!= -1){
@@ -2174,10 +2174,10 @@ public final class RMTransferPasienAntarRuang extends javax.swing.JDialog {
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
     private widget.Button BtnDokter;
-    private widget.Button BtnDokter1;
     private widget.Button BtnEdit;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnMenerima;
     private widget.Button BtnPrint;
     private widget.Button BtnRefreshPhoto1;
     private widget.Button BtnSimpan;

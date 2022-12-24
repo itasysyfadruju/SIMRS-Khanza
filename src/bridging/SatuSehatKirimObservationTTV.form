@@ -411,13 +411,13 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="widget.Table" name="tbKamar">
+                <Component class="widget.Table" name="tbSuhu">
                   <Properties>
                     <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
                       <ComponentRef name="jPopupMenu1"/>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="tbKamar" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="tbSuhu" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -440,13 +440,13 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="widget.Table" name="tbKamar1">
+                <Component class="widget.Table" name="tbRespirasi">
                   <Properties>
                     <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
                       <ComponentRef name="jPopupMenu1"/>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="tbKamar1" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="tbRespirasi" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -469,13 +469,13 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="widget.Table" name="tbKamar2">
+                <Component class="widget.Table" name="tbNadi">
                   <Properties>
                     <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
                       <ComponentRef name="jPopupMenu1"/>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="tbKamar2" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="tbNadi" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -498,13 +498,13 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="widget.Table" name="tbKamar3">
+                <Component class="widget.Table" name="tbSpO2">
                   <Properties>
                     <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
                       <ComponentRef name="jPopupMenu1"/>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="tbKamar3" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="tbSpO2" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -527,13 +527,13 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="widget.Table" name="tbKamar4">
+                <Component class="widget.Table" name="tbGCS">
                   <Properties>
                     <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
                       <ComponentRef name="jPopupMenu1"/>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="tbKamar4" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="tbGCS" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -556,13 +556,13 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="widget.Table" name="tbKamar5">
+                <Component class="widget.Table" name="tbKesadaran">
                   <Properties>
                     <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
                       <ComponentRef name="jPopupMenu1"/>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="tbKamar5" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="tbKesadaran" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -577,21 +577,21 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Tensi (mmHg)">
-                    <Property name="tabTitle" type="java.lang.String" value="Tensi (mmHg)"/>
+                  <JTabbedPaneConstraints tabName="Tekanan Darah(mmHg)">
+                    <Property name="tabTitle" type="java.lang.String" value="Tekanan Darah(mmHg)"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="widget.Table" name="tbKamar6">
+                <Component class="widget.Table" name="tbTensi">
                   <Properties>
                     <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
                       <ComponentRef name="jPopupMenu1"/>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="tbKamar6" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="tbTensi" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>

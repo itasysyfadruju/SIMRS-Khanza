@@ -35,7 +35,7 @@ import org.springframework.http.MediaType;
  * @author dosen
  */
 public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode;
+    private final DefaultTableModel tabModeSuhu;
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
     private Connection koneksi=koneksiDB.condb();
@@ -61,9 +61,9 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         this.setLocation(10,2);
         setSize(628,674);
 
-        tabMode=new DefaultTableModel(null,new String[]{
+        tabModeSuhu=new DefaultTableModel(null,new String[]{
                 "P","Tanggal Registrasi","No.Rawat","No.RM","Nama Pasien","No.KTP Pasien","Stts Rawat","Stts Lanjut",
-                "Tanggal Pulang","ID Encounter","ICD 10","Nama Penyakit","ID Condition"
+                "Tanggal Pulang","ID Encounter","Suhu (°C)","Petugas/Dokter/Praktisi","No.KTP Praktisi","ID Observation Suhu"
             }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){
                 boolean a = false;
@@ -75,21 +75,21 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
              Class[] types = new Class[] {
                  java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, 
                  java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, 
-                 java.lang.String.class, java.lang.String.class, java.lang.String.class
+                 java.lang.String.class, java.lang.String.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
              }
         };
-        tbKamar.setModel(tabMode);
+        tbSuhu.setModel(tabModeSuhu);
 
         //tbKamar.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbKamar.getBackground()));
-        tbKamar.setPreferredScrollableViewportSize(new Dimension(500,500));
-        tbKamar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tbSuhu.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbSuhu.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 13; i++) {
-            TableColumn column = tbKamar.getColumnModel().getColumn(i);
+        for (i = 0; i < 14; i++) {
+            TableColumn column = tbSuhu.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(20);
             }else if(i==1){
@@ -113,12 +113,14 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
             }else if(i==10){
                 column.setPreferredWidth(50);
             }else if(i==11){
-                column.setPreferredWidth(225);
+                column.setPreferredWidth(150);
             }else if(i==12){
+                column.setPreferredWidth(100);
+            }else if(i==13){
                 column.setPreferredWidth(215);
             }
         }
-        tbKamar.setDefaultRenderer(Object.class, new WarnaTable());
+        tbSuhu.setDefaultRenderer(Object.class, new WarnaTable());
         
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
         
@@ -185,19 +187,19 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         BtnCari = new widget.Button();
         TabRawat = new javax.swing.JTabbedPane();
         Scroll = new widget.ScrollPane();
-        tbKamar = new widget.Table();
+        tbSuhu = new widget.Table();
         Scroll1 = new widget.ScrollPane();
-        tbKamar1 = new widget.Table();
+        tbRespirasi = new widget.Table();
         Scroll2 = new widget.ScrollPane();
-        tbKamar2 = new widget.Table();
+        tbNadi = new widget.Table();
         Scroll3 = new widget.ScrollPane();
-        tbKamar3 = new widget.Table();
+        tbSpO2 = new widget.Table();
         Scroll4 = new widget.ScrollPane();
-        tbKamar4 = new widget.Table();
+        tbGCS = new widget.Table();
         Scroll5 = new widget.ScrollPane();
-        tbKamar5 = new widget.Table();
+        tbKesadaran = new widget.Table();
         Scroll6 = new widget.ScrollPane();
-        tbKamar6 = new widget.Table();
+        tbTensi = new widget.Table();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -402,10 +404,10 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbKamar.setAutoCreateRowSorter(true);
-        tbKamar.setComponentPopupMenu(jPopupMenu1);
-        tbKamar.setName("tbKamar"); // NOI18N
-        Scroll.setViewportView(tbKamar);
+        tbSuhu.setAutoCreateRowSorter(true);
+        tbSuhu.setComponentPopupMenu(jPopupMenu1);
+        tbSuhu.setName("tbSuhu"); // NOI18N
+        Scroll.setViewportView(tbSuhu);
 
         TabRawat.addTab("Suhu (°C)", Scroll);
 
@@ -413,10 +415,10 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
 
-        tbKamar1.setAutoCreateRowSorter(true);
-        tbKamar1.setComponentPopupMenu(jPopupMenu1);
-        tbKamar1.setName("tbKamar1"); // NOI18N
-        Scroll1.setViewportView(tbKamar1);
+        tbRespirasi.setAutoCreateRowSorter(true);
+        tbRespirasi.setComponentPopupMenu(jPopupMenu1);
+        tbRespirasi.setName("tbRespirasi"); // NOI18N
+        Scroll1.setViewportView(tbRespirasi);
 
         TabRawat.addTab("Respirasi (/menit)", Scroll1);
 
@@ -424,10 +426,10 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         Scroll2.setName("Scroll2"); // NOI18N
         Scroll2.setOpaque(true);
 
-        tbKamar2.setAutoCreateRowSorter(true);
-        tbKamar2.setComponentPopupMenu(jPopupMenu1);
-        tbKamar2.setName("tbKamar2"); // NOI18N
-        Scroll2.setViewportView(tbKamar2);
+        tbNadi.setAutoCreateRowSorter(true);
+        tbNadi.setComponentPopupMenu(jPopupMenu1);
+        tbNadi.setName("tbNadi"); // NOI18N
+        Scroll2.setViewportView(tbNadi);
 
         TabRawat.addTab("Nadi (/menit)", Scroll2);
 
@@ -435,10 +437,10 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         Scroll3.setName("Scroll3"); // NOI18N
         Scroll3.setOpaque(true);
 
-        tbKamar3.setAutoCreateRowSorter(true);
-        tbKamar3.setComponentPopupMenu(jPopupMenu1);
-        tbKamar3.setName("tbKamar3"); // NOI18N
-        Scroll3.setViewportView(tbKamar3);
+        tbSpO2.setAutoCreateRowSorter(true);
+        tbSpO2.setComponentPopupMenu(jPopupMenu1);
+        tbSpO2.setName("tbSpO2"); // NOI18N
+        Scroll3.setViewportView(tbSpO2);
 
         TabRawat.addTab("SpO2 (%)", Scroll3);
 
@@ -446,10 +448,10 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         Scroll4.setName("Scroll4"); // NOI18N
         Scroll4.setOpaque(true);
 
-        tbKamar4.setAutoCreateRowSorter(true);
-        tbKamar4.setComponentPopupMenu(jPopupMenu1);
-        tbKamar4.setName("tbKamar4"); // NOI18N
-        Scroll4.setViewportView(tbKamar4);
+        tbGCS.setAutoCreateRowSorter(true);
+        tbGCS.setComponentPopupMenu(jPopupMenu1);
+        tbGCS.setName("tbGCS"); // NOI18N
+        Scroll4.setViewportView(tbGCS);
 
         TabRawat.addTab("GCS (E,V,M)", Scroll4);
 
@@ -457,10 +459,10 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         Scroll5.setName("Scroll5"); // NOI18N
         Scroll5.setOpaque(true);
 
-        tbKamar5.setAutoCreateRowSorter(true);
-        tbKamar5.setComponentPopupMenu(jPopupMenu1);
-        tbKamar5.setName("tbKamar5"); // NOI18N
-        Scroll5.setViewportView(tbKamar5);
+        tbKesadaran.setAutoCreateRowSorter(true);
+        tbKesadaran.setComponentPopupMenu(jPopupMenu1);
+        tbKesadaran.setName("tbKesadaran"); // NOI18N
+        Scroll5.setViewportView(tbKesadaran);
 
         TabRawat.addTab("Kesadaran", Scroll5);
 
@@ -468,12 +470,12 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         Scroll6.setName("Scroll6"); // NOI18N
         Scroll6.setOpaque(true);
 
-        tbKamar6.setAutoCreateRowSorter(true);
-        tbKamar6.setComponentPopupMenu(jPopupMenu1);
-        tbKamar6.setName("tbKamar6"); // NOI18N
-        Scroll6.setViewportView(tbKamar6);
+        tbTensi.setAutoCreateRowSorter(true);
+        tbTensi.setComponentPopupMenu(jPopupMenu1);
+        tbTensi.setName("tbTensi"); // NOI18N
+        Scroll6.setViewportView(tbTensi);
 
-        TabRawat.addTab("Tensi (mmHg)", Scroll6);
+        TabRawat.addTab("Tekanan Darah(mmHg)", Scroll6);
 
         internalFrame1.add(TabRawat, java.awt.BorderLayout.CENTER);
 
@@ -494,10 +496,10 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        if(tabMode.getRowCount()==0){
+        if(tabModeSuhu.getRowCount()==0){
             JOptionPane.showMessageDialog(null,"Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
             TCari.requestFocus();
-        }else if(tabMode.getRowCount()!=0){            
+        }else if(tabModeSuhu.getRowCount()!=0){            
                 Map<String, Object> param = new HashMap<>();    
                 param.put("namars",akses.getnamars());
                 param.put("alamatrs",akses.getalamatrs());
@@ -522,7 +524,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
             BtnKeluar.requestFocus();
         }else if(evt.getKeyCode()==KeyEvent.VK_UP){
-            tbKamar.requestFocus();
+            tbSuhu.requestFocus();
         }
     }//GEN-LAST:event_TCariKeyPressed
 
@@ -541,10 +543,10 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCariKeyPressed
 
     private void BtnKirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimActionPerformed
-        for(i=0;i<tbKamar.getRowCount();i++){
-            if(tbKamar.getValueAt(i,0).toString().equals("true")&&(!tbKamar.getValueAt(i,5).toString().equals(""))&&(!tbKamar.getValueAt(i,9).toString().equals(""))&&tbKamar.getValueAt(i,12).toString().equals("")){
+        for(i=0;i<tbSuhu.getRowCount();i++){
+            if(tbSuhu.getValueAt(i,0).toString().equals("true")&&(!tbSuhu.getValueAt(i,5).toString().equals(""))&&(!tbSuhu.getValueAt(i,9).toString().equals(""))&&tbSuhu.getValueAt(i,12).toString().equals("")){
                 try {
-                    idpasien=cekViaSatuSehat.tampilIDPasien(tbKamar.getValueAt(i,5).toString());
+                    idpasien=cekViaSatuSehat.tampilIDPasien(tbSuhu.getValueAt(i,5).toString());
                     try{
                         headers = new HttpHeaders();
                         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -575,18 +577,18 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                                         "\"coding\": [" +
                                             "{" +
                                                 "\"system\": \"http://hl7.org/fhir/sid/icd-10\"," +
-                                                "\"code\": \""+tbKamar.getValueAt(i,10).toString()+"\"," +
-                                                "\"display\": \""+tbKamar.getValueAt(i,11).toString()+"\"" +
+                                                "\"code\": \""+tbSuhu.getValueAt(i,10).toString()+"\"," +
+                                                "\"display\": \""+tbSuhu.getValueAt(i,11).toString()+"\"" +
                                             "}" +
                                         "]" +
                                     "}," +
                                     "\"subject\": {" +
                                         "\"reference\": \"Patient/"+idpasien+"\"," +
-                                        "\"display\": \""+tbKamar.getValueAt(i,4).toString()+"\"" +
+                                        "\"display\": \""+tbSuhu.getValueAt(i,4).toString()+"\"" +
                                     "}," +
                                     "\"encounter\": {" +
-                                        "\"reference\": \"Encounter/"+tbKamar.getValueAt(i,9).toString()+"\"," +
-                                        "\"display\": \"Kunjungan "+tbKamar.getValueAt(i,4).toString()+" pada tanggal "+tbKamar.getValueAt(i,1).toString()+"\"" +
+                                        "\"reference\": \"Encounter/"+tbSuhu.getValueAt(i,9).toString()+"\"," +
+                                        "\"display\": \"Kunjungan "+tbSuhu.getValueAt(i,4).toString()+" pada tanggal "+tbSuhu.getValueAt(i,1).toString()+"\"" +
                                     "}" +
                                 "}";
                         System.out.println("URL : "+link+"/Condition");
@@ -598,7 +600,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                         response = root.path("id");
                         if(!response.asText().equals("")){
                             Sequel.menyimpan("satu_sehat_condition","?,?,?,?","Diagnosa",4,new String[]{
-                                tbKamar.getValueAt(i,2).toString(),tbKamar.getValueAt(i,10).toString(),tbKamar.getValueAt(i,7).toString(),response.asText()
+                                tbSuhu.getValueAt(i,2).toString(),tbSuhu.getValueAt(i,10).toString(),tbSuhu.getValueAt(i,7).toString(),response.asText()
                             });
                         }
                     }catch(Exception e){
@@ -613,29 +615,29 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnKirimActionPerformed
 
     private void ppPilihSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPilihSemuaActionPerformed
-        for(i=0;i<tbKamar.getRowCount();i++){
-            tbKamar.setValueAt(true,i,0);
+        for(i=0;i<tbSuhu.getRowCount();i++){
+            tbSuhu.setValueAt(true,i,0);
         }
     }//GEN-LAST:event_ppPilihSemuaActionPerformed
 
     private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppBersihkanActionPerformed
-        for(i=0;i<tbKamar.getRowCount();i++){
-            tbKamar.setValueAt(false,i,0);
+        for(i=0;i<tbSuhu.getRowCount();i++){
+            tbSuhu.setValueAt(false,i,0);
         }
     }//GEN-LAST:event_ppBersihkanActionPerformed
 
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
-        for(i=0;i<tbKamar.getRowCount();i++){
-            if(tbKamar.getValueAt(i,0).toString().equals("true")&&(!tbKamar.getValueAt(i,5).toString().equals(""))&&(!tbKamar.getValueAt(i,9).toString().equals(""))&&(!tbKamar.getValueAt(i,12).toString().equals(""))){
+        for(i=0;i<tbSuhu.getRowCount();i++){
+            if(tbSuhu.getValueAt(i,0).toString().equals("true")&&(!tbSuhu.getValueAt(i,5).toString().equals(""))&&(!tbSuhu.getValueAt(i,9).toString().equals(""))&&(!tbSuhu.getValueAt(i,12).toString().equals(""))){
                 try {
-                    idpasien=cekViaSatuSehat.tampilIDPasien(tbKamar.getValueAt(i,5).toString());
+                    idpasien=cekViaSatuSehat.tampilIDPasien(tbSuhu.getValueAt(i,5).toString());
                     try{
                         headers = new HttpHeaders();
                         headers.setContentType(MediaType.APPLICATION_JSON);
                         headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
                         json = "{" +
                                     "\"resourceType\": \"Condition\"," +
-                                    "\"id\": \""+tbKamar.getValueAt(i,12).toString()+"\"," +
+                                    "\"id\": \""+tbSuhu.getValueAt(i,12).toString()+"\"," +
                                     "\"clinicalStatus\": {" +
                                         "\"coding\": [" +
                                             "{" +
@@ -660,24 +662,24 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                                         "\"coding\": [" +
                                             "{" +
                                                 "\"system\": \"http://hl7.org/fhir/sid/icd-10\"," +
-                                                "\"code\": \""+tbKamar.getValueAt(i,10).toString()+"\"," +
-                                                "\"display\": \""+tbKamar.getValueAt(i,11).toString()+"\"" +
+                                                "\"code\": \""+tbSuhu.getValueAt(i,10).toString()+"\"," +
+                                                "\"display\": \""+tbSuhu.getValueAt(i,11).toString()+"\"" +
                                             "}" +
                                         "]" +
                                     "}," +
                                     "\"subject\": {" +
                                         "\"reference\": \"Patient/"+idpasien+"\"," +
-                                        "\"display\": \""+tbKamar.getValueAt(i,4).toString()+"\"" +
+                                        "\"display\": \""+tbSuhu.getValueAt(i,4).toString()+"\"" +
                                     "}," +
                                     "\"encounter\": {" +
-                                        "\"reference\": \"Encounter/"+tbKamar.getValueAt(i,9).toString()+"\"," +
-                                        "\"display\": \"Kunjungan "+tbKamar.getValueAt(i,4).toString()+" pada tanggal "+tbKamar.getValueAt(i,1).toString()+"\"" +
+                                        "\"reference\": \"Encounter/"+tbSuhu.getValueAt(i,9).toString()+"\"," +
+                                        "\"display\": \"Kunjungan "+tbSuhu.getValueAt(i,4).toString()+" pada tanggal "+tbSuhu.getValueAt(i,1).toString()+"\"" +
                                     "}" +
                                 "}";
-                        System.out.println("URL : "+link+"/Condition/"+tbKamar.getValueAt(i,12).toString());
+                        System.out.println("URL : "+link+"/Condition/"+tbSuhu.getValueAt(i,12).toString());
                         System.out.println("Request JSON : "+json);
                         requestEntity = new HttpEntity(json,headers);
-                        json=api.getRest().exchange(link+"/Condition/"+tbKamar.getValueAt(i,12).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
+                        json=api.getRest().exchange(link+"/Condition/"+tbSuhu.getValueAt(i,12).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
                         System.out.println("Result JSON : "+json);
                     }catch(Exception e){
                         System.out.println("Notifikasi Bridging : "+e);
@@ -741,17 +743,17 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
     private widget.panelisi panelGlass9;
     private javax.swing.JMenuItem ppBersihkan;
     private javax.swing.JMenuItem ppPilihSemua;
-    private widget.Table tbKamar;
-    private widget.Table tbKamar1;
-    private widget.Table tbKamar2;
-    private widget.Table tbKamar3;
-    private widget.Table tbKamar4;
-    private widget.Table tbKamar5;
-    private widget.Table tbKamar6;
+    private widget.Table tbGCS;
+    private widget.Table tbKesadaran;
+    private widget.Table tbNadi;
+    private widget.Table tbRespirasi;
+    private widget.Table tbSpO2;
+    private widget.Table tbSuhu;
+    private widget.Table tbTensi;
     // End of variables declaration//GEN-END:variables
     
     private void tampil() {
-        Valid.tabelKosong(tabMode);
+        Valid.tabelKosong(tabModeSuhu);
         try{
             ps=koneksi.prepareStatement(
                    "select reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.no_ktp,"+
@@ -780,7 +782,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                 }
                 rs=ps.executeQuery();
                 while(rs.next()){
-                    tabMode.addRow(new Object[]{
+                    tabModeSuhu.addRow(new Object[]{
                         false,rs.getString("tgl_registrasi")+" "+rs.getString("jam_reg"),rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),
                         rs.getString("no_ktp"),rs.getString("stts"),rs.getString("status_lanjut"),rs.getString("pulang"),rs.getString("id_encounter"),rs.getString("kd_penyakit"),
                         rs.getString("nm_penyakit"),rs.getString("id_condition")
@@ -799,15 +801,15 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         }catch(Exception e){
             System.out.println("Notifikasi : "+e);
         }
-        LCount.setText(""+tabMode.getRowCount());
+        LCount.setText(""+tabModeSuhu.getRowCount());
     }
 
     public void isCek(){
-        BtnKirim.setEnabled(akses.getsatu_sehat_kirim_condition());
-        BtnPrint.setEnabled(akses.getsatu_sehat_kirim_condition());
+        BtnKirim.setEnabled(akses.getsatu_sehat_kirim_observationttv());
+        BtnPrint.setEnabled(akses.getsatu_sehat_kirim_observationttv());
     }
     
     public JTable getTable(){
-        return tbKamar;
+        return tbSuhu;
     }
 }

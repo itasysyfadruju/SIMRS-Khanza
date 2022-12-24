@@ -139,7 +139,14 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
 
         TNoRw.setDocument(new batasInput((byte)17).getKata(TNoRw));
-        KdPetugasRuangan.setDocument(new batasInput((byte)20).getKata(KdPetugasRuangan));
+        SNCN.setDocument(new batasInput((byte)25).getKata(SNCN));
+        Tindakan.setDocument(new batasInput((byte)50).getKata(Tindakan));
+        KeteranganPersiapanDarah.setDocument(new batasInput((byte)20).getKata(KeteranganPersiapanDarah));
+        KeteranganRadiologi.setDocument(new batasInput((byte)20).getKata(KeteranganRadiologi));
+        KeteranganEKG.setDocument(new batasInput((byte)20).getKata(KeteranganEKG));
+        KeteranganUSG.setDocument(new batasInput((byte)20).getKata(KeteranganUSG));
+        KeteranganCTScan.setDocument(new batasInput((byte)20).getKata(KeteranganCTScan));
+        KeteranganMRI.setDocument(new batasInput((byte)20).getKata(KeteranganMRI));
         TCari.setDocument(new batasInput((int)100).getKata(TCari));
         
         if(koneksiDB.CARICEPAT().equals("aktif")){
@@ -182,8 +189,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
                         NmPetugasOK.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(),1).toString());
                         KdPetugasOK.requestFocus();
                     }   
-                }  
-                    
+                }   
             }
             @Override
             public void windowIconified(WindowEvent e) {}
@@ -301,7 +307,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         Tanggal = new widget.Tanggal();
         jLabel20 = new widget.Label();
         KeteranganPersiapanDarah = new widget.TextBox();
-        SN = new widget.TextBox();
+        SNCN = new widget.TextBox();
         jLabel22 = new widget.Label();
         jLabel23 = new widget.Label();
         KodeDokterBedah = new widget.TextBox();
@@ -325,7 +331,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         jLabel55 = new widget.Label();
         jLabel56 = new widget.Label();
         PersiapanDarah = new widget.ComboBox();
-        KdPetugas5 = new widget.TextBox();
+        Tindakan = new widget.TextBox();
         jLabel57 = new widget.Label();
         PerlengkapanKhusus = new widget.ComboBox();
         jLabel58 = new widget.Label();
@@ -766,10 +772,10 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         FormInput.add(KeteranganPersiapanDarah);
         KeteranganPersiapanDarah.setBounds(283, 180, 150, 23);
 
-        SN.setHighlighter(null);
-        SN.setName("SN"); // NOI18N
-        FormInput.add(SN);
-        SN.setBounds(264, 40, 120, 23);
+        SNCN.setHighlighter(null);
+        SNCN.setName("SNCN"); // NOI18N
+        FormInput.add(SNCN);
+        SNCN.setBounds(264, 40, 120, 23);
 
         jLabel22.setText("SN/CN :");
         jLabel22.setName("jLabel22"); // NOI18N
@@ -947,10 +953,10 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         FormInput.add(PersiapanDarah);
         PersiapanDarah.setBounds(144, 180, 135, 23);
 
-        KdPetugas5.setHighlighter(null);
-        KdPetugas5.setName("KdPetugas5"); // NOI18N
-        FormInput.add(KdPetugas5);
-        KdPetugas5.setBounds(79, 70, 305, 23);
+        Tindakan.setHighlighter(null);
+        Tindakan.setName("Tindakan"); // NOI18N
+        FormInput.add(Tindakan);
+        Tindakan.setBounds(79, 70, 305, 23);
 
         jLabel57.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel57.setText("Hasil Pemeriksaan Penunjang :");
@@ -1725,7 +1731,6 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     private widget.ComboBox Identitas;
     private widget.ComboBox IjinAnestesi;
     private widget.ComboBox IjinBedah;
-    private widget.TextBox KdPetugas5;
     private widget.TextBox KdPetugasOK;
     private widget.TextBox KdPetugasRuangan;
     private widget.ComboBox KeadaanUmum;
@@ -1749,7 +1754,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     private widget.ComboBox PerlengkapanKhusus;
     private widget.ComboBox PersiapanDarah;
     private widget.ComboBox Radiologi;
-    private widget.TextBox SN;
+    private widget.TextBox SNCN;
     private widget.ScrollPane Scroll;
     private widget.TextBox TCari;
     private widget.TextBox TNoRM;
@@ -1757,6 +1762,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     private widget.TextBox TPasien;
     private widget.Tanggal Tanggal;
     private widget.TextBox TglLahir;
+    private widget.TextBox Tindakan;
     private widget.ComboBox USG;
     private widget.Button btnDokterAnestesi;
     private widget.Button btnDokterBedah;
@@ -1882,26 +1888,14 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     }
     
     public void emptTeks() {
-        /*BB.setText("");
-        TBPB.setText("");
-        TD.setText("");
-        HR.setText("");
-        RR.setText("");
-        Suhu.setText("");
-        SpO2.setText("");
-        Alergi.setText("");
-        Tanggal.setDate(new Date());
-        SG1.setSelectedIndex(0);
-        Nilai1.setText("0");
-        SG2.setSelectedIndex(0);
-        Nilai2.setText("0");
-        SG3.setSelectedIndex(0);
-        Nilai3.setText("0");
-        SG4.setSelectedIndex(0);
-        Nilai4.setText("0");
-        TotalHasil.setText("0");
-        LabelSkrining.setText("Status Gizi Normal");
-        BB.requestFocus();*/
+        SNCN.setText("");
+        KodeDokterBedah.setText("");
+        NamaDokterBedah.setText("");
+        KodeDokterAnestesi.setText("");
+        NamaDokterAnestesi.setText("");
+        Identitas.setSelectedIndex(0);
+        KeadaanUmum.setSelectedIndex(0);
+        AreaOperasi.setSelectedIndex(0);
     } 
 
     private void getData() {
