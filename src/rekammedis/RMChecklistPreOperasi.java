@@ -212,8 +212,6 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         );
         Document doc = kit.createDefaultDocument();
         LoadHTML.setDocument(doc);
-        
-        jam();
     }
 
 
@@ -259,19 +257,72 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         jLabel4 = new widget.Label();
         TNoRw = new widget.TextBox();
         TPasien = new widget.TextBox();
-        Tanggal = new widget.Tanggal();
         TNoRM = new widget.TextBox();
         jLabel16 = new widget.Label();
-        Jam = new widget.ComboBox();
-        Menit = new widget.ComboBox();
-        Detik = new widget.ComboBox();
-        ChkKejadian = new widget.CekBox();
         jLabel18 = new widget.Label();
         KdPetugas = new widget.TextBox();
         NmPetugas = new widget.TextBox();
         btnPetugas = new widget.Button();
         jLabel8 = new widget.Label();
         TglLahir = new widget.TextBox();
+        TglAsuhan = new widget.Tanggal();
+        jLabel20 = new widget.Label();
+        KdPetugas1 = new widget.TextBox();
+        KdPetugas2 = new widget.TextBox();
+        jLabel22 = new widget.Label();
+        jLabel23 = new widget.Label();
+        KdPetugas3 = new widget.TextBox();
+        NmPetugas1 = new widget.TextBox();
+        btnPetugas1 = new widget.Button();
+        btnPetugas2 = new widget.Button();
+        NmPetugas2 = new widget.TextBox();
+        KdPetugas4 = new widget.TextBox();
+        jLabel24 = new widget.Label();
+        jLabel25 = new widget.Label();
+        jLabel50 = new widget.Label();
+        Prothesa = new widget.ComboBox();
+        jLabel51 = new widget.Label();
+        Prothesa1 = new widget.ComboBox();
+        Prothesa2 = new widget.ComboBox();
+        jLabel52 = new widget.Label();
+        Prothesa3 = new widget.ComboBox();
+        Prothesa4 = new widget.ComboBox();
+        jLabel54 = new widget.Label();
+        Prothesa5 = new widget.ComboBox();
+        jLabel55 = new widget.Label();
+        jLabel56 = new widget.Label();
+        Prothesa6 = new widget.ComboBox();
+        KdPetugas5 = new widget.TextBox();
+        jLabel57 = new widget.Label();
+        Prothesa7 = new widget.ComboBox();
+        jLabel58 = new widget.Label();
+        jLabel59 = new widget.Label();
+        Prothesa8 = new widget.ComboBox();
+        KdPetugas6 = new widget.TextBox();
+        jLabel60 = new widget.Label();
+        KdPetugas7 = new widget.TextBox();
+        Prothesa9 = new widget.ComboBox();
+        jLabel61 = new widget.Label();
+        Prothesa10 = new widget.ComboBox();
+        KdPetugas8 = new widget.TextBox();
+        jLabel62 = new widget.Label();
+        Prothesa11 = new widget.ComboBox();
+        KdPetugas9 = new widget.TextBox();
+        jLabel63 = new widget.Label();
+        Prothesa12 = new widget.ComboBox();
+        KdPetugas10 = new widget.TextBox();
+        jLabel26 = new widget.Label();
+        KdPetugas11 = new widget.TextBox();
+        NmPetugas3 = new widget.TextBox();
+        btnPetugas3 = new widget.Button();
+        jLabel5 = new widget.Label();
+        jLabel64 = new widget.Label();
+        jLabel65 = new widget.Label();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel27 = new widget.Label();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -462,7 +513,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-12-2022" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-12-2022" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -476,7 +527,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-12-2022" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-12-2022" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -570,10 +621,11 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         FormInput.setPreferredSize(new java.awt.Dimension(100, 363));
         FormInput.setLayout(null);
 
-        jLabel4.setText("No.Rawat :");
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel4.setText("No.Rawat");
         jLabel4.setName("jLabel4"); // NOI18N
         FormInput.add(jLabel4);
-        jLabel4.setBounds(0, 10, 75, 23);
+        jLabel4.setBounds(21, 10, 75, 23);
 
         TNoRw.setHighlighter(null);
         TNoRw.setName("TNoRw"); // NOI18N
@@ -596,19 +648,6 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         FormInput.add(TPasien);
         TPasien.setBounds(336, 10, 285, 23);
 
-        Tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-12-2022" }));
-        Tanggal.setDisplayFormat("dd-MM-yyyy");
-        Tanggal.setName("Tanggal"); // NOI18N
-        Tanggal.setOpaque(false);
-        Tanggal.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TanggalKeyPressed(evt);
-            }
-        });
-        FormInput.add(Tanggal);
-        Tanggal.setBounds(79, 40, 90, 23);
-
         TNoRM.setEditable(false);
         TNoRM.setHighlighter(null);
         TNoRM.setName("TNoRM"); // NOI18N
@@ -626,60 +665,22 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel16);
         jLabel16.setBounds(0, 40, 75, 23);
 
-        Jam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        Jam.setName("Jam"); // NOI18N
-        Jam.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                JamKeyPressed(evt);
-            }
-        });
-        FormInput.add(Jam);
-        Jam.setBounds(173, 40, 62, 23);
-
-        Menit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        Menit.setName("Menit"); // NOI18N
-        Menit.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                MenitKeyPressed(evt);
-            }
-        });
-        FormInput.add(Menit);
-        Menit.setBounds(238, 40, 62, 23);
-
-        Detik.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        Detik.setName("Detik"); // NOI18N
-        Detik.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                DetikKeyPressed(evt);
-            }
-        });
-        FormInput.add(Detik);
-        Detik.setBounds(303, 40, 62, 23);
-
-        ChkKejadian.setBorder(null);
-        ChkKejadian.setSelected(true);
-        ChkKejadian.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        ChkKejadian.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ChkKejadian.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ChkKejadian.setName("ChkKejadian"); // NOI18N
-        FormInput.add(ChkKejadian);
-        ChkKejadian.setBounds(368, 40, 23, 23);
-
-        jLabel18.setText("Petugas :");
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel18.setText("Petugas Ruangan");
         jLabel18.setName("jLabel18"); // NOI18N
         FormInput.add(jLabel18);
-        jLabel18.setBounds(390, 290, 70, 23);
+        jLabel18.setBounds(21, 330, 103, 23);
 
         KdPetugas.setEditable(false);
         KdPetugas.setHighlighter(null);
         KdPetugas.setName("KdPetugas"); // NOI18N
         FormInput.add(KdPetugas);
-        KdPetugas.setBounds(470, 290, 94, 23);
+        KdPetugas.setBounds(117, 330, 95, 23);
 
         NmPetugas.setEditable(false);
         NmPetugas.setName("NmPetugas"); // NOI18N
         FormInput.add(NmPetugas);
-        NmPetugas.setBounds(560, 290, 187, 23);
+        NmPetugas.setBounds(214, 330, 165, 23);
 
         btnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         btnPetugas.setMnemonic('2');
@@ -696,7 +697,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnPetugas);
-        btnPetugas.setBounds(760, 290, 28, 23);
+        btnPetugas.setBounds(381, 330, 28, 23);
 
         jLabel8.setText("Tgl.Lahir :");
         jLabel8.setName("jLabel8"); // NOI18N
@@ -707,6 +708,419 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         TglLahir.setName("TglLahir"); // NOI18N
         FormInput.add(TglLahir);
         TglLahir.setBounds(689, 10, 100, 23);
+
+        TglAsuhan.setForeground(new java.awt.Color(50, 70, 50));
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-12-2022 09:41:45" }));
+        TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
+        TglAsuhan.setName("TglAsuhan"); // NOI18N
+        TglAsuhan.setOpaque(false);
+        TglAsuhan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TglAsuhanKeyPressed(evt);
+            }
+        });
+        FormInput.add(TglAsuhan);
+        TglAsuhan.setBounds(79, 40, 130, 23);
+
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel20.setText("Perawat Melakukan Konfirmasi :");
+        jLabel20.setName("jLabel20"); // NOI18N
+        FormInput.add(jLabel20);
+        jLabel20.setBounds(21, 100, 190, 23);
+
+        KdPetugas1.setHighlighter(null);
+        KdPetugas1.setName("KdPetugas1"); // NOI18N
+        FormInput.add(KdPetugas1);
+        KdPetugas1.setBounds(283, 180, 150, 23);
+
+        KdPetugas2.setHighlighter(null);
+        KdPetugas2.setName("KdPetugas2"); // NOI18N
+        FormInput.add(KdPetugas2);
+        KdPetugas2.setBounds(264, 40, 120, 23);
+
+        jLabel22.setText("SN/CN :");
+        jLabel22.setName("jLabel22"); // NOI18N
+        FormInput.add(jLabel22);
+        jLabel22.setBounds(210, 40, 50, 23);
+
+        jLabel23.setText("Dokter Bedah :");
+        jLabel23.setName("jLabel23"); // NOI18N
+        FormInput.add(jLabel23);
+        jLabel23.setBounds(390, 40, 91, 23);
+
+        KdPetugas3.setEditable(false);
+        KdPetugas3.setHighlighter(null);
+        KdPetugas3.setName("KdPetugas3"); // NOI18N
+        FormInput.add(KdPetugas3);
+        KdPetugas3.setBounds(485, 40, 97, 23);
+
+        NmPetugas1.setEditable(false);
+        NmPetugas1.setName("NmPetugas1"); // NOI18N
+        FormInput.add(NmPetugas1);
+        NmPetugas1.setBounds(584, 40, 175, 23);
+
+        btnPetugas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnPetugas1.setMnemonic('2');
+        btnPetugas1.setToolTipText("ALt+2");
+        btnPetugas1.setName("btnPetugas1"); // NOI18N
+        btnPetugas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPetugas1ActionPerformed(evt);
+            }
+        });
+        btnPetugas1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnPetugas1KeyPressed(evt);
+            }
+        });
+        FormInput.add(btnPetugas1);
+        btnPetugas1.setBounds(761, 40, 28, 23);
+
+        btnPetugas2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnPetugas2.setMnemonic('2');
+        btnPetugas2.setToolTipText("ALt+2");
+        btnPetugas2.setName("btnPetugas2"); // NOI18N
+        btnPetugas2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPetugas2ActionPerformed(evt);
+            }
+        });
+        btnPetugas2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnPetugas2KeyPressed(evt);
+            }
+        });
+        FormInput.add(btnPetugas2);
+        btnPetugas2.setBounds(761, 70, 28, 23);
+
+        NmPetugas2.setEditable(false);
+        NmPetugas2.setName("NmPetugas2"); // NOI18N
+        FormInput.add(NmPetugas2);
+        NmPetugas2.setBounds(584, 70, 175, 23);
+
+        KdPetugas4.setEditable(false);
+        KdPetugas4.setHighlighter(null);
+        KdPetugas4.setName("KdPetugas4"); // NOI18N
+        FormInput.add(KdPetugas4);
+        KdPetugas4.setBounds(485, 70, 97, 23);
+
+        jLabel24.setText("Dokter Anestesi :");
+        jLabel24.setName("jLabel24"); // NOI18N
+        FormInput.add(jLabel24);
+        jLabel24.setBounds(390, 70, 91, 23);
+
+        jLabel25.setText("Tindakan :");
+        jLabel25.setName("jLabel25"); // NOI18N
+        FormInput.add(jLabel25);
+        jLabel25.setBounds(0, 70, 75, 23);
+
+        jLabel50.setText("Identitas :");
+        jLabel50.setName("jLabel50"); // NOI18N
+        FormInput.add(jLabel50);
+        jLabel50.setBounds(0, 120, 140, 23);
+
+        Prothesa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ya", "Tidak" }));
+        Prothesa.setName("Prothesa"); // NOI18N
+        Prothesa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ProthesaKeyPressed(evt);
+            }
+        });
+        FormInput.add(Prothesa);
+        Prothesa.setBounds(144, 120, 80, 23);
+
+        jLabel51.setText("Penandaan Area Operasi :");
+        jLabel51.setName("jLabel51"); // NOI18N
+        FormInput.add(jLabel51);
+        jLabel51.setBounds(510, 120, 140, 23);
+
+        Prothesa1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ada", "Tidak Ada", "Tidak Diperlukan" }));
+        Prothesa1.setName("Prothesa1"); // NOI18N
+        Prothesa1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Prothesa1KeyPressed(evt);
+            }
+        });
+        FormInput.add(Prothesa1);
+        Prothesa1.setBounds(654, 120, 135, 23);
+
+        Prothesa2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Baik", "Sedang", "Lemah" }));
+        Prothesa2.setName("Prothesa2"); // NOI18N
+        Prothesa2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Prothesa2KeyPressed(evt);
+            }
+        });
+        FormInput.add(Prothesa2);
+        Prothesa2.setBounds(394, 120, 90, 23);
+
+        jLabel52.setText("Keadaan Umum Pasien :");
+        jLabel52.setName("jLabel52"); // NOI18N
+        FormInput.add(jLabel52);
+        jLabel52.setBounds(250, 120, 140, 23);
+
+        Prothesa3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ada", "Tidak Ada" }));
+        Prothesa3.setName("Prothesa3"); // NOI18N
+        Prothesa3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Prothesa3KeyPressed(evt);
+            }
+        });
+        FormInput.add(Prothesa3);
+        Prothesa3.setBounds(144, 150, 100, 23);
+
+        Prothesa4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ada", "Tidak Ada" }));
+        Prothesa4.setName("Prothesa4"); // NOI18N
+        Prothesa4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Prothesa4KeyPressed(evt);
+            }
+        });
+        FormInput.add(Prothesa4);
+        Prothesa4.setBounds(394, 150, 100, 23);
+
+        jLabel54.setText("Surat Ijin Anestesi :");
+        jLabel54.setName("jLabel54"); // NOI18N
+        FormInput.add(jLabel54);
+        jLabel54.setBounds(280, 150, 110, 23);
+
+        Prothesa5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ada", "Tidak Ada", "Tidak Diperlukan" }));
+        Prothesa5.setName("Prothesa5"); // NOI18N
+        Prothesa5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Prothesa5KeyPressed(evt);
+            }
+        });
+        FormInput.add(Prothesa5);
+        Prothesa5.setBounds(654, 150, 135, 23);
+
+        jLabel55.setText("Surat Ijin Tranfusi :");
+        jLabel55.setName("jLabel55"); // NOI18N
+        FormInput.add(jLabel55);
+        jLabel55.setBounds(520, 150, 130, 23);
+
+        jLabel56.setText("Perlengkapan Khusus, Alat/Implan :");
+        jLabel56.setName("jLabel56"); // NOI18N
+        FormInput.add(jLabel56);
+        jLabel56.setBounds(460, 180, 190, 23);
+
+        Prothesa6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ada", "Tidak Ada", "Tidak Diperlukan" }));
+        Prothesa6.setName("Prothesa6"); // NOI18N
+        Prothesa6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Prothesa6KeyPressed(evt);
+            }
+        });
+        FormInput.add(Prothesa6);
+        Prothesa6.setBounds(144, 180, 135, 23);
+
+        KdPetugas5.setHighlighter(null);
+        KdPetugas5.setName("KdPetugas5"); // NOI18N
+        FormInput.add(KdPetugas5);
+        KdPetugas5.setBounds(79, 70, 305, 23);
+
+        jLabel57.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel57.setText("Hasil Pemeriksaan Penunjang :");
+        jLabel57.setName("jLabel57"); // NOI18N
+        FormInput.add(jLabel57);
+        jLabel57.setBounds(53, 210, 170, 23);
+
+        Prothesa7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ada", "Tidak Ada", "Tidak Diperlukan" }));
+        Prothesa7.setName("Prothesa7"); // NOI18N
+        Prothesa7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Prothesa7KeyPressed(evt);
+            }
+        });
+        FormInput.add(Prothesa7);
+        Prothesa7.setBounds(654, 180, 135, 23);
+
+        jLabel58.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel58.setText("Persiapan Darah");
+        jLabel58.setName("jLabel58"); // NOI18N
+        FormInput.add(jLabel58);
+        jLabel58.setBounds(53, 180, 90, 23);
+
+        jLabel59.setText("Radiologi :");
+        jLabel59.setName("jLabel59"); // NOI18N
+        FormInput.add(jLabel59);
+        jLabel59.setBounds(66, 230, 100, 23);
+
+        Prothesa8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ada", "Tidak Ada", "Tidak Diperlukan" }));
+        Prothesa8.setName("Prothesa8"); // NOI18N
+        Prothesa8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Prothesa8KeyPressed(evt);
+            }
+        });
+        FormInput.add(Prothesa8);
+        Prothesa8.setBounds(170, 230, 135, 23);
+
+        KdPetugas6.setHighlighter(null);
+        KdPetugas6.setName("KdPetugas6"); // NOI18N
+        FormInput.add(KdPetugas6);
+        KdPetugas6.setBounds(309, 230, 120, 23);
+
+        jLabel60.setText("EKG :");
+        jLabel60.setName("jLabel60"); // NOI18N
+        FormInput.add(jLabel60);
+        jLabel60.setBounds(456, 230, 70, 23);
+
+        KdPetugas7.setHighlighter(null);
+        KdPetugas7.setName("KdPetugas7"); // NOI18N
+        FormInput.add(KdPetugas7);
+        KdPetugas7.setBounds(669, 230, 120, 23);
+
+        Prothesa9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ada", "Tidak Ada", "Tidak Diperlukan" }));
+        Prothesa9.setName("Prothesa9"); // NOI18N
+        Prothesa9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Prothesa9KeyPressed(evt);
+            }
+        });
+        FormInput.add(Prothesa9);
+        Prothesa9.setBounds(530, 230, 135, 23);
+
+        jLabel61.setText("CT Scan :");
+        jLabel61.setName("jLabel61"); // NOI18N
+        FormInput.add(jLabel61);
+        jLabel61.setBounds(456, 260, 70, 23);
+
+        Prothesa10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ada", "Tidak Ada", "Tidak Diperlukan" }));
+        Prothesa10.setName("Prothesa10"); // NOI18N
+        Prothesa10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Prothesa10KeyPressed(evt);
+            }
+        });
+        FormInput.add(Prothesa10);
+        Prothesa10.setBounds(530, 260, 135, 23);
+
+        KdPetugas8.setHighlighter(null);
+        KdPetugas8.setName("KdPetugas8"); // NOI18N
+        FormInput.add(KdPetugas8);
+        KdPetugas8.setBounds(669, 260, 120, 23);
+
+        jLabel62.setText("USG :");
+        jLabel62.setName("jLabel62"); // NOI18N
+        FormInput.add(jLabel62);
+        jLabel62.setBounds(66, 260, 100, 23);
+
+        Prothesa11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ada", "Tidak Ada", "Tidak Diperlukan" }));
+        Prothesa11.setName("Prothesa11"); // NOI18N
+        Prothesa11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Prothesa11KeyPressed(evt);
+            }
+        });
+        FormInput.add(Prothesa11);
+        Prothesa11.setBounds(170, 260, 135, 23);
+
+        KdPetugas9.setHighlighter(null);
+        KdPetugas9.setName("KdPetugas9"); // NOI18N
+        FormInput.add(KdPetugas9);
+        KdPetugas9.setBounds(309, 260, 120, 23);
+
+        jLabel63.setText("MRI :");
+        jLabel63.setName("jLabel63"); // NOI18N
+        FormInput.add(jLabel63);
+        jLabel63.setBounds(66, 290, 100, 23);
+
+        Prothesa12.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ada", "Tidak Ada", "Tidak Diperlukan" }));
+        Prothesa12.setName("Prothesa12"); // NOI18N
+        Prothesa12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Prothesa12KeyPressed(evt);
+            }
+        });
+        FormInput.add(Prothesa12);
+        Prothesa12.setBounds(170, 290, 135, 23);
+
+        KdPetugas10.setHighlighter(null);
+        KdPetugas10.setName("KdPetugas10"); // NOI18N
+        FormInput.add(KdPetugas10);
+        KdPetugas10.setBounds(309, 290, 120, 23);
+
+        jLabel26.setText("Petugas OK :");
+        jLabel26.setName("jLabel26"); // NOI18N
+        FormInput.add(jLabel26);
+        jLabel26.setBounds(423, 330, 70, 23);
+
+        KdPetugas11.setEditable(false);
+        KdPetugas11.setHighlighter(null);
+        KdPetugas11.setName("KdPetugas11"); // NOI18N
+        FormInput.add(KdPetugas11);
+        KdPetugas11.setBounds(497, 330, 95, 23);
+
+        NmPetugas3.setEditable(false);
+        NmPetugas3.setName("NmPetugas3"); // NOI18N
+        FormInput.add(NmPetugas3);
+        NmPetugas3.setBounds(594, 330, 165, 23);
+
+        btnPetugas3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnPetugas3.setMnemonic('2');
+        btnPetugas3.setToolTipText("ALt+2");
+        btnPetugas3.setName("btnPetugas3"); // NOI18N
+        btnPetugas3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPetugas3ActionPerformed(evt);
+            }
+        });
+        btnPetugas3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnPetugas3KeyPressed(evt);
+            }
+        });
+        FormInput.add(btnPetugas3);
+        btnPetugas3.setBounds(761, 330, 28, 23);
+
+        jLabel5.setText(":");
+        jLabel5.setName("jLabel5"); // NOI18N
+        FormInput.add(jLabel5);
+        jLabel5.setBounds(0, 10, 75, 23);
+
+        jLabel64.setText("Surat Ijin Bedah :");
+        jLabel64.setName("jLabel64"); // NOI18N
+        FormInput.add(jLabel64);
+        jLabel64.setBounds(0, 150, 140, 23);
+
+        jLabel65.setText(":");
+        jLabel65.setName("jLabel65"); // NOI18N
+        FormInput.add(jLabel65);
+        jLabel65.setBounds(0, 180, 140, 23);
+
+        jSeparator1.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator1.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
+        jSeparator1.setName("jSeparator1"); // NOI18N
+        FormInput.add(jSeparator1);
+        jSeparator1.setBounds(0, 100, 810, 1);
+
+        jSeparator2.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator2.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
+        jSeparator2.setName("jSeparator2"); // NOI18N
+        FormInput.add(jSeparator2);
+        jSeparator2.setBounds(0, 100, 810, 1);
+
+        jSeparator3.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator3.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
+        jSeparator3.setName("jSeparator3"); // NOI18N
+        FormInput.add(jSeparator3);
+        jSeparator3.setBounds(0, 320, 810, 1);
+
+        jSeparator4.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator4.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
+        jSeparator4.setName("jSeparator4"); // NOI18N
+        FormInput.add(jSeparator4);
+        jSeparator4.setBounds(0, 320, 810, 1);
+
+        jLabel27.setText(":");
+        jLabel27.setName("jLabel27"); // NOI18N
+        FormInput.add(jLabel27);
+        jLabel27.setBounds(3, 330, 110, 23);
 
         scrollInput.setViewportView(FormInput);
 
@@ -724,7 +1138,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
             isRawat();
             isPsien();
         }else{            
-            Valid.pindah(evt,TCari,Tanggal);
+            //Valid.pindah(evt,TCari,Tanggal);
         }
 }//GEN-LAST:event_TNoRwKeyPressed
 
@@ -1081,10 +1495,6 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_BtnAllKeyPressed
 
-    private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TanggalKeyPressed
-        Valid.pindah(evt,TCari,Jam);
-}//GEN-LAST:event_TanggalKeyPressed
-
     private void TNoRMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNoRMKeyPressed
         // Valid.pindah(evt, TNm, BtnSimpan);
 }//GEN-LAST:event_TNoRMKeyPressed
@@ -1109,18 +1519,6 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_tbObatKeyPressed
 
-    private void JamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JamKeyPressed
-        Valid.pindah(evt,Tanggal,Menit);
-    }//GEN-LAST:event_JamKeyPressed
-
-    private void MenitKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MenitKeyPressed
-        Valid.pindah(evt,Jam,Detik);
-    }//GEN-LAST:event_MenitKeyPressed
-
-    private void DetikKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DetikKeyPressed
-        Valid.pindah(evt,Menit,btnPetugas);
-    }//GEN-LAST:event_DetikKeyPressed
-
     private void btnPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetugasActionPerformed
         petugas.emptTeks();
         petugas.isCek();
@@ -1134,7 +1532,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     }//GEN-LAST:event_btnPetugasKeyPressed
 
     private void MnSkriningNutrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSkriningNutrisiActionPerformed
-        if(tbObat.getSelectedRow()>-1){
+        /*if(tbObat.getSelectedRow()>-1){
             Map<String, Object> param = new HashMap<>();
             param.put("namars",akses.getnamars());
             param.put("alamatrs",akses.getalamatrs());
@@ -1156,12 +1554,92 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
                     "from skrining_nutrisi_anak inner join reg_periksa on skrining_nutrisi_anak.no_rawat=reg_periksa.no_rawat "+
                     "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join petugas on skrining_nutrisi_anak.nip=petugas.nip "+
                     "where reg_periksa.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
-        }
+        }*/
     }//GEN-LAST:event_MnSkriningNutrisiActionPerformed
 
     private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkInputActionPerformed
         isForm();
     }//GEN-LAST:event_ChkInputActionPerformed
+
+    private void TglAsuhanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TglAsuhanKeyPressed
+       // Valid.pindah(evt,Rencana,Informasi);
+    }//GEN-LAST:event_TglAsuhanKeyPressed
+
+    private void btnPetugas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetugas1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPetugas1ActionPerformed
+
+    private void btnPetugas1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPetugas1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPetugas1KeyPressed
+
+    private void btnPetugas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetugas2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPetugas2ActionPerformed
+
+    private void btnPetugas2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPetugas2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPetugas2KeyPressed
+
+    private void ProthesaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ProthesaKeyPressed
+        //Valid.pindah(evt,KetBantu,KetProthesa);
+    }//GEN-LAST:event_ProthesaKeyPressed
+
+    private void Prothesa1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Prothesa1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Prothesa1KeyPressed
+
+    private void Prothesa2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Prothesa2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Prothesa2KeyPressed
+
+    private void Prothesa3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Prothesa3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Prothesa3KeyPressed
+
+    private void Prothesa4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Prothesa4KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Prothesa4KeyPressed
+
+    private void Prothesa5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Prothesa5KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Prothesa5KeyPressed
+
+    private void Prothesa6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Prothesa6KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Prothesa6KeyPressed
+
+    private void Prothesa7KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Prothesa7KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Prothesa7KeyPressed
+
+    private void Prothesa8KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Prothesa8KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Prothesa8KeyPressed
+
+    private void Prothesa9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Prothesa9KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Prothesa9KeyPressed
+
+    private void Prothesa10KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Prothesa10KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Prothesa10KeyPressed
+
+    private void Prothesa11KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Prothesa11KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Prothesa11KeyPressed
+
+    private void Prothesa12KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Prothesa12KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Prothesa12KeyPressed
+
+    private void btnPetugas3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetugas3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPetugas3ActionPerformed
+
+    private void btnPetugas3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPetugas3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPetugas3KeyPressed
 
     /**
     * @param args the command line arguments
@@ -1189,39 +1667,92 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
     private widget.CekBox ChkInput;
-    private widget.CekBox ChkKejadian;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
-    private widget.ComboBox Detik;
     private widget.PanelBiasa FormInput;
-    private widget.ComboBox Jam;
     private widget.TextBox KdPetugas;
+    private widget.TextBox KdPetugas1;
+    private widget.TextBox KdPetugas10;
+    private widget.TextBox KdPetugas11;
+    private widget.TextBox KdPetugas2;
+    private widget.TextBox KdPetugas3;
+    private widget.TextBox KdPetugas4;
+    private widget.TextBox KdPetugas5;
+    private widget.TextBox KdPetugas6;
+    private widget.TextBox KdPetugas7;
+    private widget.TextBox KdPetugas8;
+    private widget.TextBox KdPetugas9;
     private widget.Label LCount;
     private widget.editorpane LoadHTML;
-    private widget.ComboBox Menit;
     private javax.swing.JMenuItem MnSkriningNutrisi;
     private widget.TextBox NmPetugas;
+    private widget.TextBox NmPetugas1;
+    private widget.TextBox NmPetugas2;
+    private widget.TextBox NmPetugas3;
     private javax.swing.JPanel PanelInput;
+    private widget.ComboBox Prothesa;
+    private widget.ComboBox Prothesa1;
+    private widget.ComboBox Prothesa10;
+    private widget.ComboBox Prothesa11;
+    private widget.ComboBox Prothesa12;
+    private widget.ComboBox Prothesa2;
+    private widget.ComboBox Prothesa3;
+    private widget.ComboBox Prothesa4;
+    private widget.ComboBox Prothesa5;
+    private widget.ComboBox Prothesa6;
+    private widget.ComboBox Prothesa7;
+    private widget.ComboBox Prothesa8;
+    private widget.ComboBox Prothesa9;
     private widget.ScrollPane Scroll;
     private widget.TextBox TCari;
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRw;
     private widget.TextBox TPasien;
-    private widget.Tanggal Tanggal;
+    private widget.Tanggal TglAsuhan;
     private widget.TextBox TglLahir;
     private widget.Button btnPetugas;
+    private widget.Button btnPetugas1;
+    private widget.Button btnPetugas2;
+    private widget.Button btnPetugas3;
     private javax.swing.ButtonGroup buttonGroup1;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel16;
     private widget.Label jLabel18;
     private widget.Label jLabel19;
+    private widget.Label jLabel20;
     private widget.Label jLabel21;
+    private widget.Label jLabel22;
+    private widget.Label jLabel23;
+    private widget.Label jLabel24;
+    private widget.Label jLabel25;
+    private widget.Label jLabel26;
+    private widget.Label jLabel27;
     private widget.Label jLabel4;
+    private widget.Label jLabel5;
+    private widget.Label jLabel50;
+    private widget.Label jLabel51;
+    private widget.Label jLabel52;
+    private widget.Label jLabel54;
+    private widget.Label jLabel55;
+    private widget.Label jLabel56;
+    private widget.Label jLabel57;
+    private widget.Label jLabel58;
+    private widget.Label jLabel59;
     private widget.Label jLabel6;
+    private widget.Label jLabel60;
+    private widget.Label jLabel61;
+    private widget.Label jLabel62;
+    private widget.Label jLabel63;
+    private widget.Label jLabel64;
+    private widget.Label jLabel65;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.ScrollPane scrollInput;
@@ -1330,10 +1861,6 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
             TNoRM.setText(tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
             TPasien.setText(tbObat.getValueAt(tbObat.getSelectedRow(),2).toString());
             TglLahir.setText(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
-            Jam.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString().substring(11,13));
-            Menit.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString().substring(14,15));
-            Detik.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString().substring(17,19));
-            Valid.SetTgl(Tanggal,tbObat.getValueAt(tbObat.getSelectedRow(),7).toString());  
         }
     }
     private void isRawat() {
@@ -1378,10 +1905,10 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     }
     
     public void isCek(){
-        BtnSimpan.setEnabled(akses.getskrining_nutrisi_anak());
-        BtnHapus.setEnabled(akses.getskrining_nutrisi_anak());
-        BtnEdit.setEnabled(akses.getskrining_nutrisi_anak());
-        BtnPrint.setEnabled(akses.getskrining_nutrisi_anak()); 
+        BtnSimpan.setEnabled(akses.getchecklist_pre_operasi());
+        BtnHapus.setEnabled(akses.getchecklist_pre_operasi());
+        BtnEdit.setEnabled(akses.getchecklist_pre_operasi());
+        BtnPrint.setEnabled(akses.getchecklist_pre_operasi()); 
         if(akses.getjml2()>=1){
             KdPetugas.setEditable(false);
             btnPetugas.setEnabled(false);
@@ -1392,59 +1919,6 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null,"User login bukan petugas...!!");
             }
         }            
-    }
-
-    private void jam(){
-        ActionListener taskPerformer = new ActionListener(){
-            private int nilai_jam;
-            private int nilai_menit;
-            private int nilai_detik;
-            public void actionPerformed(ActionEvent e) {
-                String nol_jam = "";
-                String nol_menit = "";
-                String nol_detik = "";
-                
-                Date now = Calendar.getInstance().getTime();
-
-                // Mengambil nilaj JAM, MENIT, dan DETIK Sekarang
-                if(ChkKejadian.isSelected()==true){
-                    nilai_jam = now.getHours();
-                    nilai_menit = now.getMinutes();
-                    nilai_detik = now.getSeconds();
-                }else if(ChkKejadian.isSelected()==false){
-                    nilai_jam =Jam.getSelectedIndex();
-                    nilai_menit =Menit.getSelectedIndex();
-                    nilai_detik =Detik.getSelectedIndex();
-                }
-
-                // Jika nilai JAM lebih kecil dari 10 (hanya 1 digit)
-                if (nilai_jam <= 9) {
-                    // Tambahkan "0" didepannya
-                    nol_jam = "0";
-                }
-                // Jika nilai MENIT lebih kecil dari 10 (hanya 1 digit)
-                if (nilai_menit <= 9) {
-                    // Tambahkan "0" didepannya
-                    nol_menit = "0";
-                }
-                // Jika nilai DETIK lebih kecil dari 10 (hanya 1 digit)
-                if (nilai_detik <= 9) {
-                    // Tambahkan "0" didepannya
-                    nol_detik = "0";
-                }
-                // Membuat String JAM, MENIT, DETIK
-                String jam = nol_jam + Integer.toString(nilai_jam);
-                String menit = nol_menit + Integer.toString(nilai_menit);
-                String detik = nol_detik + Integer.toString(nilai_detik);
-                // Menampilkan pada Layar
-                //tampil_jam.setText("  " + jam + " : " + menit + " : " + detik + "  ");
-                Jam.setSelectedItem(jam);
-                Menit.setSelectedItem(menit);
-                Detik.setSelectedItem(detik);
-            }
-        };
-        // Timer
-        new Timer(1000, taskPerformer).start();
     }
 
     private void ganti() {

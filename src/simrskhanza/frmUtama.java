@@ -457,6 +457,7 @@ import bridging.PCareCekKartu;
 import bridging.PCareCekReferensiTACC;
 import bridging.SatuSehatKirimCondition;
 import bridging.SatuSehatKirimEncounter;
+import bridging.SatuSehatKirimObservationTTV;
 import bridging.SatuSehatMapingLokasi;
 import bridging.SatuSehatMapingOrganisasi;
 import bridging.SatuSehatReferensiPasien;
@@ -19507,6 +19508,18 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         this.setCursor(Cursor.getDefaultCursor());
     }
     
+    private void btnKirimObservationTTVSatuSehatActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        SatuSehatKirimObservationTTV aplikasi=new SatuSehatKirimObservationTTV(this,false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        aplikasi.isCek();
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
     /**
     * @param args the command line arguments
     */
@@ -20166,7 +20179,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             btnSkriningNutrisiLansia,btnSkriningNutrisiAnak,btnAkunRekeningHtHBankJabar,btnPembayaranBankJabar,btnPernyataanPasienUmum,btnKonselingFarmasi,
             btnPelayananInformasiObat,btnPersetujuanUmum,btnTransferPasienAntarRuang,btnReferensiDokterSatuSehat,btnReferensiPasienSatuSehat,
             btnMappingOrganisasiSatuSehat,btnMappingLokasiSatuSehat,btnKirimEncounterSatuSehat,btnCatatanCekGDS,btnKirimConditionSatuSehat,
-            btnChecklistPreOperasi;
+            btnChecklistPreOperasi,btnKirimObservationTTVSatuSehat;
     
     public void isWall(){
         try{            
@@ -23019,6 +23032,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             
             if(akses.getsatu_sehat_kirim_condition()==true){
                 Panelmenu.add(btnKirimConditionSatuSehat);
+                jmlmenu++;
+            }
+            
+            if(akses.getsatu_sehat_kirim_observationttv()==true){
+                Panelmenu.add(btnKirimObservationTTVSatuSehat);
                 jmlmenu++;
             }
         }else if(cmbMenu.getSelectedIndex()==11){ 
@@ -27485,6 +27503,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         
         if(akses.getsatu_sehat_kirim_condition()==true){
             Panelmenu.add(btnKirimConditionSatuSehat);
+            jmlmenu++;
+        }
+
+        if(akses.getsatu_sehat_kirim_observationttv()==true){
+            Panelmenu.add(btnKirimObservationTTVSatuSehat);
             jmlmenu++;
         }
 
@@ -33038,6 +33061,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         if(akses.getsatu_sehat_kirim_condition()==true){
             if(btnKirimConditionSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnKirimConditionSatuSehat);
+                jmlmenu++;
+            }                
+        }
+        
+        if(akses.getsatu_sehat_kirim_observationttv()==true){
+            if(btnKirimObservationTTVSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnKirimObservationTTVSatuSehat);
                 jmlmenu++;
             }                
         }
@@ -38925,5 +38955,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         btnChecklistPreOperasi.setName("btnChecklistPreOperasi"); 
         btnChecklistPreOperasi.setPreferredSize(new java.awt.Dimension(200, 90));
         btnChecklistPreOperasi.addActionListener(this::btnChecklistPreOperasiActionPerformed);
+        
+        btnKirimObservationTTVSatuSehat = new widget.ButtonBig();
+        btnKirimObservationTTVSatuSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/satusehat.png")));
+        btnKirimObservationTTVSatuSehat.setText("Kirim Observation-TTV Satu Sehat");
+        btnKirimObservationTTVSatuSehat.setIconTextGap(0);
+        btnKirimObservationTTVSatuSehat.setName("btnKirimObservationTTVSatuSehat"); 
+        btnKirimObservationTTVSatuSehat.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnKirimObservationTTVSatuSehat.addActionListener(this::btnKirimObservationTTVSatuSehatActionPerformed);
     }
 }

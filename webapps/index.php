@@ -20,7 +20,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Edukasi, Konfirmasi & Persetujuan</title>
-    <link href="css/default.css" rel="stylesheet" type="text/css" />
+    <link href="css/login.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="conf/validator.js"></script>
     <script>
         function PopupCenter(pageURL, title,w,h) {
@@ -32,7 +32,10 @@
     </script>
 </head>
 <body>
-    <div id="mainContent">
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+    <div id="content">
         <?php 
            $sesilogin=isset($_SESSION['ses_admin_login'])?$_SESSION['ses_admin_login']:NULL;
            if ($sesilogin==USERHYBRIDWEB.PASHYBRIDWEB){
@@ -115,24 +118,20 @@
                                             <td width='100%' height='100%' alin='center' valign='middle' border='0'> 
                                                 <table width='400px' align='center' height='100px' border='0'>
                                                     <tr width='100%' align='center' border='0'>
-                                                        <td width='40%' align='right' border='0' class=\"text\">User Login&nbsp;</td>
-                                                        <td align='center' border='0' class=\"text\">:</td>
-                                                        <td width='60%' align='left' border='0' class=\"text\">
-                                                            <input type=\"password\" name=\"usere\" class=\"text\" pattern=\"[a-zA-Z0-9, ./_]{1,30}\" title=\" a-zA-Z0-9, ./_- (Maksimal 30 karakter)\" required placeholder=\"User\" onkeydown=\"setDefault(this, document.getElementById('MsgIsi1'));\" id=\"TxtIsi1\" autocomplete=\"off\" size=\"17\" maxlength=\"30\" autofocus/>
+                                                        <td width='100%' align='center' border='0' class=\"text\">
+                                                            <input type=\"password\" name=\"usere\" class=\"text\" pattern=\"[a-zA-Z0-9, ./_]{1,30}\" title=\" a-zA-Z0-9, ./_ (Maksimal 30 karakter)\" required placeholder=\"User Login\" onkeydown=\"setDefault(this, document.getElementById('MsgIsi1'));\" id=\"TxtIsi1\" autocomplete=\"off\" size=\"17\" maxlength=\"30\" autofocus/>
                                                             <span id=\"MsgIsi1\" style=\"color:#CC0000; font-size:10px;\"></span>
                                                         </td>
                                                     </tr>
                                                     <tr width='100%' align='center' border='0'>
-                                                        <td width='40%' align='right' border='0' class=\"text\">Password&nbsp;</td>
-                                                        <td align='center' border='0' class=\"text\">:</td>
-                                                        <td width='60%' align='left' border='0' class=\"text\">
-                                                            <input type=\"password\" name=\"passworde\" class=\"text\" pattern=\"[a-zA-Z0-9, ./_]{1,30}\" title=\" a-zA-Z0-9, ./_- (Maksimal 30 karakter)\" required placeholder=\"Password\" onkeydown=\"setDefault(this, document.getElementById('MsgIsi2'));\" id=\"TxtIsi2\" autocomplete=\"off\" size=\"17\" maxlength=\"30\"/>
+                                                        <td width='100%' align='center' border='0' class=\"text\">
+                                                            <input type=\"password\" name=\"passworde\" class=\"text\" pattern=\"[a-zA-Z0-9, ./_]{1,30}\" title=\" a-zA-Z0-9, ./_ (Maksimal 30 karakter)\" required placeholder=\"Password\" onkeydown=\"setDefault(this, document.getElementById('MsgIsi2'));\" id=\"TxtIsi2\" autocomplete=\"off\" size=\"17\" maxlength=\"30\"/>
                                                             <span id=\"MsgIsi2\" style=\"color:#CC0000; font-size:10px;\"></span>
                                                         </td>
                                                     </tr>
                                                     <tr width='100%' align='center' border='0'>
-                                                        <td width='100%' colspan='3' border='0' class=\"text\">
-                                                            <div align=\"center\"><input name=\"BtnLogin\" type=\"submit\" class=\"button\" value=\"&nbsp;&nbsp;Log-In&nbsp;&nbsp;\">&nbsp<input name=\"BtnKosong\" type=\"reset\" class=\"button\" value=\"&nbsp;&nbsp;&nbsp;Batal&nbsp;&nbsp;&nbsp;\"></div>
+                                                        <td width='100%' border='0' class=\"text\">
+                                                            <div align=\"center\"><input name=\"BtnLogin\" type=\"submit\" class=\"button\" value=\"Log-In\">&nbsp<input name=\"BtnKosong\" type=\"reset\" class=\"button\" value=\"Batal\"></div>
                                                         </td>
                                                     </tr>
                                                 </table> 
@@ -148,24 +147,20 @@
                                         <td width='100%' height='100%' alin='center' valign='middle' border='0'> 
                                             <table width='400px' align='center' height='100px' border='0'>
                                                 <tr width='100%' align='center' border='0'>
-                                                    <td width='40%' align='right' border='0' class=\"text\">User Login&nbsp;</td>
-                                                    <td align='center' border='0' class=\"text\">:</td>
-                                                    <td width='60%' align='left' border='0' class=\"text\">
-                                                        <input type=\"password\" name=\"usere\" class=\"text\" pattern=\"[a-zA-Z0-9, ./_]{1,30}\" title=\" a-zA-Z0-9, ./_ (Maksimal 30 karakter)\" required placeholder=\"User\" onkeydown=\"setDefault(this, document.getElementById('MsgIsi1'));\" id=\"TxtIsi1\" autocomplete=\"off\" size=\"17\" maxlength=\"30\" autofocus/>
+                                                    <td width='100%' align='center' border='0' class=\"text\">
+                                                        <input type=\"password\" name=\"usere\" class=\"text\" pattern=\"[a-zA-Z0-9, ./_]{1,30}\" title=\" a-zA-Z0-9, ./_ (Maksimal 30 karakter)\" required placeholder=\"User Login\" onkeydown=\"setDefault(this, document.getElementById('MsgIsi1'));\" id=\"TxtIsi1\" autocomplete=\"off\" size=\"17\" maxlength=\"30\" autofocus/>
                                                         <span id=\"MsgIsi1\" style=\"color:#CC0000; font-size:10px;\"></span>
                                                     </td>
                                                 </tr>
                                                 <tr width='100%' align='center' border='0'>
-                                                    <td width='40%' align='right' border='0' class=\"text\">Password&nbsp;</td>
-                                                    <td align='center' border='0' class=\"text\">:</td>
-                                                    <td width='60%' align='left' border='0' class=\"text\">
+                                                    <td width='100%' align='center' border='0' class=\"text\">
                                                         <input type=\"password\" name=\"passworde\" class=\"text\" pattern=\"[a-zA-Z0-9, ./_]{1,30}\" title=\" a-zA-Z0-9, ./_ (Maksimal 30 karakter)\" required placeholder=\"Password\" onkeydown=\"setDefault(this, document.getElementById('MsgIsi2'));\" id=\"TxtIsi2\" autocomplete=\"off\" size=\"17\" maxlength=\"30\"/>
                                                         <span id=\"MsgIsi2\" style=\"color:#CC0000; font-size:10px;\"></span>
                                                     </td>
                                                 </tr>
                                                 <tr width='100%' align='center' border='0'>
-                                                    <td width='100%' colspan='3' border='0' class=\"text\">
-                                                        <div align=\"center\"><input name=\"BtnLogin\" type=\"submit\" class=\"button\" value=\"&nbsp;&nbsp;Log-In&nbsp;&nbsp;\">&nbsp<input name=\"BtnKosong\" type=\"reset\" class=\"button\" value=\"&nbsp;&nbsp;&nbsp;Batal&nbsp;&nbsp;&nbsp;\"></div>
+                                                    <td width='100%' border='0' class=\"text\">
+                                                        <div align=\"center\"><input name=\"BtnLogin\" type=\"submit\" class=\"button\" value=\"Log-In\">&nbsp<input name=\"BtnKosong\" type=\"reset\" class=\"button\" value=\"Batal\"></div>
                                                     </td>
                                                 </tr>
                                             </table> 
