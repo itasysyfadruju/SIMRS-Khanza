@@ -183,11 +183,11 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
                     if(pilihan==1){
                         KdPetugasRuangan.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(),0).toString());
                         NmPetugasRuangan.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(),1).toString());
-                        KdPetugasRuangan.requestFocus();
+                        btnPetugasRuangan.requestFocus();
                     }else if(pilihan==2){
                         KdPetugasOK.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(),0).toString());
                         NmPetugasOK.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(),1).toString());
-                        KdPetugasOK.requestFocus();
+                        btnPetugasOK.requestFocus();
                     }   
                 }   
             }
@@ -212,11 +212,11 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
                     if(pilihan==1){
                         KodeDokterBedah.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(),0).toString());
                         NamaDokterBedah.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(),1).toString());
-                        KodeDokterBedah.requestFocus();
+                        btnDokterBedah.requestFocus();
                     }else if(pilihan==2){
                         KodeDokterAnestesi.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(),0).toString());
                         NamaDokterAnestesi.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(),1).toString());
-                        KodeDokterAnestesi.requestFocus();
+                        btnDokterAnestesi.requestFocus();
                     }   
                 }  
                     
@@ -327,7 +327,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         IjinBedah = new widget.ComboBox();
         IjinAnestesi = new widget.ComboBox();
         jLabel54 = new widget.Label();
-        ijinTransfusi = new widget.ComboBox();
+        IjinTransfusi = new widget.ComboBox();
         jLabel55 = new widget.Label();
         jLabel56 = new widget.Label();
         PersiapanDarah = new widget.ComboBox();
@@ -769,11 +769,21 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
 
         KeteranganPersiapanDarah.setHighlighter(null);
         KeteranganPersiapanDarah.setName("KeteranganPersiapanDarah"); // NOI18N
+        KeteranganPersiapanDarah.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                KeteranganPersiapanDarahKeyPressed(evt);
+            }
+        });
         FormInput.add(KeteranganPersiapanDarah);
         KeteranganPersiapanDarah.setBounds(283, 180, 150, 23);
 
         SNCN.setHighlighter(null);
         SNCN.setName("SNCN"); // NOI18N
+        SNCN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                SNCNKeyPressed(evt);
+            }
+        });
         FormInput.add(SNCN);
         SNCN.setBounds(264, 40, 120, 23);
 
@@ -923,15 +933,15 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel54);
         jLabel54.setBounds(280, 150, 110, 23);
 
-        ijinTransfusi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ada", "Tidak Ada", "Tidak Diperlukan" }));
-        ijinTransfusi.setName("ijinTransfusi"); // NOI18N
-        ijinTransfusi.addKeyListener(new java.awt.event.KeyAdapter() {
+        IjinTransfusi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ada", "Tidak Ada", "Tidak Diperlukan" }));
+        IjinTransfusi.setName("IjinTransfusi"); // NOI18N
+        IjinTransfusi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                ijinTransfusiKeyPressed(evt);
+                IjinTransfusiKeyPressed(evt);
             }
         });
-        FormInput.add(ijinTransfusi);
-        ijinTransfusi.setBounds(654, 150, 135, 23);
+        FormInput.add(IjinTransfusi);
+        IjinTransfusi.setBounds(654, 150, 135, 23);
 
         jLabel55.setText("Surat Ijin Tranfusi :");
         jLabel55.setName("jLabel55"); // NOI18N
@@ -955,6 +965,11 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
 
         Tindakan.setHighlighter(null);
         Tindakan.setName("Tindakan"); // NOI18N
+        Tindakan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TindakanKeyPressed(evt);
+            }
+        });
         FormInput.add(Tindakan);
         Tindakan.setBounds(79, 70, 305, 23);
 
@@ -997,6 +1012,11 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
 
         KeteranganRadiologi.setHighlighter(null);
         KeteranganRadiologi.setName("KeteranganRadiologi"); // NOI18N
+        KeteranganRadiologi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                KeteranganRadiologiKeyPressed(evt);
+            }
+        });
         FormInput.add(KeteranganRadiologi);
         KeteranganRadiologi.setBounds(309, 230, 120, 23);
 
@@ -1007,6 +1027,11 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
 
         KeteranganEKG.setHighlighter(null);
         KeteranganEKG.setName("KeteranganEKG"); // NOI18N
+        KeteranganEKG.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                KeteranganEKGKeyPressed(evt);
+            }
+        });
         FormInput.add(KeteranganEKG);
         KeteranganEKG.setBounds(669, 230, 120, 23);
 
@@ -1037,6 +1062,11 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
 
         KeteranganCTScan.setHighlighter(null);
         KeteranganCTScan.setName("KeteranganCTScan"); // NOI18N
+        KeteranganCTScan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                KeteranganCTScanKeyPressed(evt);
+            }
+        });
         FormInput.add(KeteranganCTScan);
         KeteranganCTScan.setBounds(669, 260, 120, 23);
 
@@ -1057,6 +1087,11 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
 
         KeteranganUSG.setHighlighter(null);
         KeteranganUSG.setName("KeteranganUSG"); // NOI18N
+        KeteranganUSG.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                KeteranganUSGKeyPressed(evt);
+            }
+        });
         FormInput.add(KeteranganUSG);
         KeteranganUSG.setBounds(309, 260, 120, 23);
 
@@ -1077,6 +1112,11 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
 
         KeteranganMRI.setHighlighter(null);
         KeteranganMRI.setName("KeteranganMRI"); // NOI18N
+        KeteranganMRI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                KeteranganMRIKeyPressed(evt);
+            }
+        });
         FormInput.add(KeteranganMRI);
         KeteranganMRI.setBounds(309, 290, 120, 23);
 
@@ -1186,35 +1226,30 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
 }//GEN-LAST:event_TPasienKeyPressed
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
-        /*if(TNoRw.getText().trim().equals("")||TPasien.getText().trim().equals("")){
+        if(TNoRw.getText().trim().equals("")||TPasien.getText().trim().equals("")){
             Valid.textKosong(TNoRw,"pasien");
-        }else if(KdPetugas.getText().trim().equals("")||NmPetugas.getText().trim().equals("")){
-            Valid.textKosong(KdPetugas,"Petugas");
-        }else if(BB.getText().trim().equals("")){
-            Valid.textKosong(BB,"Berat Badan");
-        }else if(TBPB.getText().trim().equals("")){
-            Valid.textKosong(TBPB,"TB/PB");
-        }else if(TD.getText().trim().equals("")){
-            Valid.textKosong(TD,"TD");
-        }else if(HR.getText().trim().equals("")){
-            Valid.textKosong(HR,"HR");
-        }else if(RR.getText().trim().equals("")){
-            Valid.textKosong(RR,"RR");
-        }else if(Suhu.getText().trim().equals("")){
-            Valid.textKosong(Suhu,"Suhu");
-        }else if(SpO2.getText().trim().equals("")){
-            Valid.textKosong(SpO2,"SpO2");
+        }else if(KodeDokterBedah.getText().trim().equals("")||NamaDokterBedah.getText().trim().equals("")){
+            Valid.textKosong(btnDokterBedah,"Dokter Bedah");
+        }else if(KodeDokterAnestesi.getText().trim().equals("")||NamaDokterAnestesi.getText().trim().equals("")){
+            Valid.textKosong(KodeDokterAnestesi,"Dokter Anestesi");
+        }else if(Tindakan.getText().trim().equals("")){
+            Valid.textKosong(Tindakan,"Tindakan");
+        }else if(SNCN.getText().trim().equals("")){
+            Valid.textKosong(SNCN,"SN/CN");
         }else{
-            if(Sequel.menyimpantf("skrining_nutrisi_anak","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","Data",23,new String[]{
-                TNoRw.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Jam.getSelectedItem()+":"+Menit.getSelectedItem()+":"+Detik.getSelectedItem(),
-                TD.getText(),HR.getText(),RR.getText(),Suhu.getText(),BB.getText(),TBPB.getText(),SpO2.getText(),Alergi.getText(),SG1.getSelectedItem().toString(),
-                Nilai1.getText(),SG2.getSelectedItem().toString(),Nilai2.getText(),SG3.getSelectedItem().toString(),Nilai3.getText(),SG4.getSelectedItem().toString(),
-                Nilai4.getText(),TotalHasil.getText(),LabelSkrining.getText(),Lapor.getSelectedItem().toString(),KetLapor.getText(),KdPetugas.getText()
+            if(Sequel.menyimpantf("checklist_pre_operasi","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","Data",26,new String[]{
+                TNoRw.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Tanggal.getSelectedItem().toString().substring(11,19),SNCN.getText(),
+                KodeDokterBedah.getText(),KodeDokterAnestesi.getText(),Identitas.getSelectedItem().toString(),IjinBedah.getSelectedItem().toString(), 
+                IjinAnestesi.getSelectedItem().toString(),IjinTransfusi.getSelectedItem().toString(),AreaOperasi.getSelectedItem().toString(), 
+                KeadaanUmum.getSelectedItem().toString(),Radiologi.getSelectedItem().toString(),KeteranganRadiologi.getText(),EKG.getSelectedItem().toString(), 
+                KeteranganEKG.getText(),USG.getSelectedItem().toString(),KeteranganUSG.getText(),CTScan.getSelectedItem().toString(),KeteranganCTScan.getText(), 
+                MRI.getSelectedItem().toString(),KeteranganMRI.getText(),PersiapanDarah.getSelectedItem().toString(),KeteranganPersiapanDarah.getText(), 
+                PerlengkapanKhusus.getSelectedItem().toString(),KdPetugasRuangan.getText(),KdPetugasOK.getText()
             })==true){
                 tampil();
                 emptTeks();
             } 
-        }*/
+        }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
     private void BtnSimpanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSimpanKeyPressed
@@ -1226,9 +1261,9 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
-        emptTeks();
         ChkInput.setSelected(true);
         isForm(); 
+        emptTeks();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
@@ -1568,7 +1603,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     }//GEN-LAST:event_btnPetugasRuanganActionPerformed
 
     private void btnPetugasRuanganKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPetugasRuanganKeyPressed
-       // Valid.pindah(evt,Detik,BB);
+        Valid.pindah(evt,KeteranganMRI,btnPetugasOK);
     }//GEN-LAST:event_btnPetugasRuanganKeyPressed
 
     private void MnSkriningNutrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSkriningNutrisiActionPerformed
@@ -1615,7 +1650,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDokterBedahActionPerformed
 
     private void btnDokterBedahKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnDokterBedahKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt,Tindakan,btnDokterAnestesi);
     }//GEN-LAST:event_btnDokterBedahKeyPressed
 
     private void btnDokterAnestesiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDokterAnestesiActionPerformed
@@ -1628,59 +1663,59 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDokterAnestesiActionPerformed
 
     private void btnDokterAnestesiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnDokterAnestesiKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt,btnDokterBedah,Identitas);
     }//GEN-LAST:event_btnDokterAnestesiKeyPressed
 
     private void IdentitasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdentitasKeyPressed
-        //Valid.pindah(evt,KetBantu,KetProthesa);
+        Valid.pindah(evt,btnDokterAnestesi,KeadaanUmum);
     }//GEN-LAST:event_IdentitasKeyPressed
 
     private void AreaOperasiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AreaOperasiKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt,KeadaanUmum,IjinBedah);
     }//GEN-LAST:event_AreaOperasiKeyPressed
 
     private void KeadaanUmumKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KeadaanUmumKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt,Identitas,AreaOperasi);
     }//GEN-LAST:event_KeadaanUmumKeyPressed
 
     private void IjinBedahKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IjinBedahKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt,AreaOperasi,IjinAnestesi);
     }//GEN-LAST:event_IjinBedahKeyPressed
 
     private void IjinAnestesiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IjinAnestesiKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt,IjinBedah,IjinTransfusi);
     }//GEN-LAST:event_IjinAnestesiKeyPressed
 
-    private void ijinTransfusiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ijinTransfusiKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ijinTransfusiKeyPressed
+    private void IjinTransfusiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IjinTransfusiKeyPressed
+        Valid.pindah(evt,IjinAnestesi,PersiapanDarah);
+    }//GEN-LAST:event_IjinTransfusiKeyPressed
 
     private void PersiapanDarahKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PersiapanDarahKeyPressed
-        // TODO add your handling code here:
+       Valid.pindah(evt,IjinTransfusi,KeteranganPersiapanDarah);
     }//GEN-LAST:event_PersiapanDarahKeyPressed
 
     private void PerlengkapanKhususKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PerlengkapanKhususKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt,KeteranganPersiapanDarah,Radiologi);
     }//GEN-LAST:event_PerlengkapanKhususKeyPressed
 
     private void RadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RadiologiKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt,PerlengkapanKhusus,KeteranganRadiologi);
     }//GEN-LAST:event_RadiologiKeyPressed
 
     private void EKGKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EKGKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt,KeteranganRadiologi,KeteranganEKG);
     }//GEN-LAST:event_EKGKeyPressed
 
     private void CTScanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CTScanKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt,KeteranganUSG,KeteranganCTScan);
     }//GEN-LAST:event_CTScanKeyPressed
 
     private void USGKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_USGKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt,KeteranganEKG,KeteranganUSG);
     }//GEN-LAST:event_USGKeyPressed
 
     private void MRIKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MRIKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt,KeteranganCTScan,KeteranganMRI);
     }//GEN-LAST:event_MRIKeyPressed
 
     private void btnPetugasOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetugasOKActionPerformed
@@ -1693,8 +1728,40 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     }//GEN-LAST:event_btnPetugasOKActionPerformed
 
     private void btnPetugasOKKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPetugasOKKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt,btnPetugasRuangan,BtnSimpan);
     }//GEN-LAST:event_btnPetugasOKKeyPressed
+
+    private void SNCNKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SNCNKeyPressed
+        Valid.pindah(evt,Tanggal,Tindakan);
+    }//GEN-LAST:event_SNCNKeyPressed
+
+    private void TindakanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TindakanKeyPressed
+        Valid.pindah(evt,SNCN,btnDokterBedah);
+    }//GEN-LAST:event_TindakanKeyPressed
+
+    private void KeteranganPersiapanDarahKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KeteranganPersiapanDarahKeyPressed
+        Valid.pindah(evt,PersiapanDarah,PerlengkapanKhusus);
+    }//GEN-LAST:event_KeteranganPersiapanDarahKeyPressed
+
+    private void KeteranganRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KeteranganRadiologiKeyPressed
+        Valid.pindah(evt,Radiologi,EKG);
+    }//GEN-LAST:event_KeteranganRadiologiKeyPressed
+
+    private void KeteranganEKGKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KeteranganEKGKeyPressed
+        Valid.pindah(evt,EKG,USG);
+    }//GEN-LAST:event_KeteranganEKGKeyPressed
+
+    private void KeteranganUSGKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KeteranganUSGKeyPressed
+        Valid.pindah(evt,USG,CTScan);
+    }//GEN-LAST:event_KeteranganUSGKeyPressed
+
+    private void KeteranganCTScanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KeteranganCTScanKeyPressed
+        Valid.pindah(evt,CTScan,MRI);
+    }//GEN-LAST:event_KeteranganCTScanKeyPressed
+
+    private void KeteranganMRIKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KeteranganMRIKeyPressed
+        Valid.pindah(evt,MRI,btnPetugasRuangan);
+    }//GEN-LAST:event_KeteranganMRIKeyPressed
 
     /**
     * @param args the command line arguments
@@ -1731,6 +1798,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     private widget.ComboBox Identitas;
     private widget.ComboBox IjinAnestesi;
     private widget.ComboBox IjinBedah;
+    private widget.ComboBox IjinTransfusi;
     private widget.TextBox KdPetugasOK;
     private widget.TextBox KdPetugasRuangan;
     private widget.ComboBox KeadaanUmum;
@@ -1769,7 +1837,6 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     private widget.Button btnPetugasOK;
     private widget.Button btnPetugasRuangan;
     private javax.swing.ButtonGroup buttonGroup1;
-    private widget.ComboBox ijinTransfusi;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel16;
     private widget.Label jLabel18;
@@ -1889,6 +1956,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     
     public void emptTeks() {
         SNCN.setText("");
+        Tindakan.setText("");
         KodeDokterBedah.setText("");
         NamaDokterBedah.setText("");
         KodeDokterAnestesi.setText("");
@@ -1896,6 +1964,23 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         Identitas.setSelectedIndex(0);
         KeadaanUmum.setSelectedIndex(0);
         AreaOperasi.setSelectedIndex(0);
+        IjinBedah.setSelectedIndex(0);
+        IjinAnestesi.setSelectedIndex(0);
+        IjinTransfusi.setSelectedIndex(0);
+        PersiapanDarah.setSelectedIndex(0);
+        KeteranganPersiapanDarah.setText("");
+        PerlengkapanKhusus.setSelectedIndex(0);
+        Radiologi.setSelectedIndex(0);
+        KeteranganRadiologi.setText("");
+        EKG.setSelectedIndex(0);
+        KeteranganEKG.setText("");
+        USG.setSelectedIndex(0);
+        KeteranganUSG.setText("");
+        CTScan.setSelectedIndex(0);
+        KeteranganCTScan.setText("");
+        MRI.setSelectedIndex(0);
+        KeteranganMRI.setText("");
+        SNCN.requestFocus();
     } 
 
     private void getData() {
