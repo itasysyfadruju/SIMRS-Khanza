@@ -33,6 +33,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
+import kepegawaian.DlgCariDokter;
 import kepegawaian.DlgCariPetugas;
 
 
@@ -49,6 +50,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     private ResultSet rs;
     private int i=0,pilihan=0;    
     private DlgCariPetugas petugas=new DlgCariPetugas(null,false);
+    private DlgCariDokter dokter=new DlgCariDokter(null,false);
     private String finger="";
     private StringBuilder htmlContent;
     /** Creates new form DlgRujuk
@@ -175,8 +177,41 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
                         KdPetugasRuangan.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(),0).toString());
                         NmPetugasRuangan.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(),1).toString());
                         KdPetugasRuangan.requestFocus();
-                    }
-                        
+                    }else if(pilihan==2){
+                        KdPetugasOK.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(),0).toString());
+                        NmPetugasOK.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(),1).toString());
+                        KdPetugasOK.requestFocus();
+                    }   
+                }  
+                    
+            }
+            @Override
+            public void windowIconified(WindowEvent e) {}
+            @Override
+            public void windowDeiconified(WindowEvent e) {}
+            @Override
+            public void windowActivated(WindowEvent e) {}
+            @Override
+            public void windowDeactivated(WindowEvent e) {}
+        }); 
+        
+        dokter.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {}
+            @Override
+            public void windowClosing(WindowEvent e) {}
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if(dokter.getTable().getSelectedRow()!= -1){      
+                    if(pilihan==1){
+                        KodeDokterBedah.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(),0).toString());
+                        NamaDokterBedah.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(),1).toString());
+                        KodeDokterBedah.requestFocus();
+                    }else if(pilihan==2){
+                        KodeDokterAnestesi.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(),0).toString());
+                        NamaDokterAnestesi.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(),1).toString());
+                        KodeDokterAnestesi.requestFocus();
+                    }   
                 }  
                     
             }
@@ -310,9 +345,9 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         MRI = new widget.ComboBox();
         KeteranganMRI = new widget.TextBox();
         jLabel26 = new widget.Label();
-        KdPetugas11 = new widget.TextBox();
-        NmPetugas3 = new widget.TextBox();
-        btnPetugas3 = new widget.Button();
+        KdPetugasOK = new widget.TextBox();
+        NmPetugasOK = new widget.TextBox();
+        btnPetugasOK = new widget.Button();
         jLabel5 = new widget.Label();
         jLabel64 = new widget.Label();
         jLabel65 = new widget.Label();
@@ -1044,33 +1079,33 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel26);
         jLabel26.setBounds(423, 330, 70, 23);
 
-        KdPetugas11.setEditable(false);
-        KdPetugas11.setHighlighter(null);
-        KdPetugas11.setName("KdPetugas11"); // NOI18N
-        FormInput.add(KdPetugas11);
-        KdPetugas11.setBounds(497, 330, 95, 23);
+        KdPetugasOK.setEditable(false);
+        KdPetugasOK.setHighlighter(null);
+        KdPetugasOK.setName("KdPetugasOK"); // NOI18N
+        FormInput.add(KdPetugasOK);
+        KdPetugasOK.setBounds(497, 330, 95, 23);
 
-        NmPetugas3.setEditable(false);
-        NmPetugas3.setName("NmPetugas3"); // NOI18N
-        FormInput.add(NmPetugas3);
-        NmPetugas3.setBounds(594, 330, 165, 23);
+        NmPetugasOK.setEditable(false);
+        NmPetugasOK.setName("NmPetugasOK"); // NOI18N
+        FormInput.add(NmPetugasOK);
+        NmPetugasOK.setBounds(594, 330, 165, 23);
 
-        btnPetugas3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnPetugas3.setMnemonic('2');
-        btnPetugas3.setToolTipText("ALt+2");
-        btnPetugas3.setName("btnPetugas3"); // NOI18N
-        btnPetugas3.addActionListener(new java.awt.event.ActionListener() {
+        btnPetugasOK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnPetugasOK.setMnemonic('2');
+        btnPetugasOK.setToolTipText("ALt+2");
+        btnPetugasOK.setName("btnPetugasOK"); // NOI18N
+        btnPetugasOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPetugas3ActionPerformed(evt);
+                btnPetugasOKActionPerformed(evt);
             }
         });
-        btnPetugas3.addKeyListener(new java.awt.event.KeyAdapter() {
+        btnPetugasOK.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnPetugas3KeyPressed(evt);
+                btnPetugasOKKeyPressed(evt);
             }
         });
-        FormInput.add(btnPetugas3);
-        btnPetugas3.setBounds(761, 330, 28, 23);
+        FormInput.add(btnPetugasOK);
+        btnPetugasOK.setBounds(761, 330, 28, 23);
 
         jLabel5.setText(":");
         jLabel5.setName("jLabel5"); // NOI18N
@@ -1565,7 +1600,12 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     }//GEN-LAST:event_TanggalKeyPressed
 
     private void btnDokterBedahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDokterBedahActionPerformed
-        // TODO add your handling code here:
+        pilihan=1;
+        dokter.emptTeks();
+        dokter.isCek();
+        dokter.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        dokter.setLocationRelativeTo(internalFrame1);
+        dokter.setVisible(true);
     }//GEN-LAST:event_btnDokterBedahActionPerformed
 
     private void btnDokterBedahKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnDokterBedahKeyPressed
@@ -1573,7 +1613,12 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDokterBedahKeyPressed
 
     private void btnDokterAnestesiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDokterAnestesiActionPerformed
-        // TODO add your handling code here:
+        pilihan=2;
+        dokter.emptTeks();
+        dokter.isCek();
+        dokter.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        dokter.setLocationRelativeTo(internalFrame1);
+        dokter.setVisible(true);
     }//GEN-LAST:event_btnDokterAnestesiActionPerformed
 
     private void btnDokterAnestesiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnDokterAnestesiKeyPressed
@@ -1632,18 +1677,18 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_MRIKeyPressed
 
-    private void btnPetugas3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetugas3ActionPerformed
+    private void btnPetugasOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetugasOKActionPerformed
         pilihan=2;
         petugas.emptTeks();
         petugas.isCek();
         petugas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
         petugas.setLocationRelativeTo(internalFrame1);
         petugas.setVisible(true);
-    }//GEN-LAST:event_btnPetugas3ActionPerformed
+    }//GEN-LAST:event_btnPetugasOKActionPerformed
 
-    private void btnPetugas3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPetugas3KeyPressed
+    private void btnPetugasOKKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPetugasOKKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPetugas3KeyPressed
+    }//GEN-LAST:event_btnPetugasOKKeyPressed
 
     /**
     * @param args the command line arguments
@@ -1680,8 +1725,8 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     private widget.ComboBox Identitas;
     private widget.ComboBox IjinAnestesi;
     private widget.ComboBox IjinBedah;
-    private widget.TextBox KdPetugas11;
     private widget.TextBox KdPetugas5;
+    private widget.TextBox KdPetugasOK;
     private widget.TextBox KdPetugasRuangan;
     private widget.ComboBox KeadaanUmum;
     private widget.TextBox KeteranganCTScan;
@@ -1698,7 +1743,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnSkriningNutrisi;
     private widget.TextBox NamaDokterAnestesi;
     private widget.TextBox NamaDokterBedah;
-    private widget.TextBox NmPetugas3;
+    private widget.TextBox NmPetugasOK;
     private widget.TextBox NmPetugasRuangan;
     private javax.swing.JPanel PanelInput;
     private widget.ComboBox PerlengkapanKhusus;
@@ -1715,7 +1760,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     private widget.ComboBox USG;
     private widget.Button btnDokterAnestesi;
     private widget.Button btnDokterBedah;
-    private widget.Button btnPetugas3;
+    private widget.Button btnPetugasOK;
     private widget.Button btnPetugasRuangan;
     private javax.swing.ButtonGroup buttonGroup1;
     private widget.ComboBox ijinTransfusi;
