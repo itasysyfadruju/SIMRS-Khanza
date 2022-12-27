@@ -135,19 +135,19 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                 @Override
                 public void insertUpdate(DocumentEvent e) {
                     if(TCari.getText().length()>2){
-                        tampil();
+                        tampilsuhu();
                     }
                 }
                 @Override
                 public void removeUpdate(DocumentEvent e) {
                     if(TCari.getText().length()>2){
-                        tampil();
+                        tampilsuhu();
                     }
                 }
                 @Override
                 public void changedUpdate(DocumentEvent e) {
                     if(TCari.getText().length()>2){
-                        tampil();
+                        tampilsuhu();
                     }
                 }
             });
@@ -521,22 +521,24 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        if(tabModeSuhu.getRowCount()==0){
-            JOptionPane.showMessageDialog(null,"Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
-            TCari.requestFocus();
-        }else if(tabModeSuhu.getRowCount()!=0){            
-                Map<String, Object> param = new HashMap<>();    
-                param.put("namars",akses.getnamars());
-                param.put("alamatrs",akses.getalamatrs());
-                param.put("kotars",akses.getkabupatenrs());
-                param.put("propinsirs",akses.getpropinsirs());
-                param.put("kontakrs",akses.getkontakrs());
-                param.put("emailrs",akses.getemailrs());   
-                param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
-                param.put("parameter","%"+TCari.getText().trim()+"%");
-                param.put("tanggal1",Valid.SetTgl(DTPCari1.getSelectedItem()+""));
-                param.put("tanggal2",Valid.SetTgl(DTPCari2.getSelectedItem()+""));
-                Valid.MyReport("rptKirimConditionSatuSehat.jasper","report","::[ Kirim Data Condition Satu Sehat Kemenkes ]::",param);            
+        if(TabRawat.getSelectedIndex()==0){
+            if(tabModeSuhu.getRowCount()==0){
+                JOptionPane.showMessageDialog(null,"Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+                TCari.requestFocus();
+            }else if(tabModeSuhu.getRowCount()!=0){            
+                    Map<String, Object> param = new HashMap<>();    
+                    param.put("namars",akses.getnamars());
+                    param.put("alamatrs",akses.getalamatrs());
+                    param.put("kotars",akses.getkabupatenrs());
+                    param.put("propinsirs",akses.getpropinsirs());
+                    param.put("kontakrs",akses.getkontakrs());
+                    param.put("emailrs",akses.getemailrs());   
+                    param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
+                    param.put("parameter","%"+TCari.getText().trim()+"%");
+                    param.put("tanggal1",Valid.SetTgl(DTPCari1.getSelectedItem()+""));
+                    param.put("tanggal2",Valid.SetTgl(DTPCari2.getSelectedItem()+""));
+                    Valid.MyReport("rptKirimObservationSatuSehat.jasper","report","::[ Kirim Data Observation Satu Sehat Kemenkes ]::",param);            
+            }
         }
         this.setCursor(Cursor.getDefaultCursor());       
     }//GEN-LAST:event_BtnPrintActionPerformed
@@ -555,7 +557,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        tampil();
+        TabRawatMouseClicked(null);
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnCariActionPerformed
 
@@ -568,75 +570,76 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCariKeyPressed
 
     private void BtnKirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimActionPerformed
-        for(i=0;i<tbSuhu.getRowCount();i++){
-            if(tbSuhu.getValueAt(i,0).toString().equals("true")&&(!tbSuhu.getValueAt(i,5).toString().equals(""))&&(!tbSuhu.getValueAt(i,9).toString().equals(""))&&tbSuhu.getValueAt(i,12).toString().equals("")){
-                try {
-                    idpasien=cekViaSatuSehat.tampilIDPasien(tbSuhu.getValueAt(i,5).toString());
-                    try{
-                        headers = new HttpHeaders();
-                        headers.setContentType(MediaType.APPLICATION_JSON);
-                        headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
-                        json = "{" +
-                                    "\"resourceType\": \"Condition\"," +
-                                    "\"clinicalStatus\": {" +
-                                        "\"coding\": [" +
+        if(TabRawat.getSelectedIndex()==0){
+            for(i=0;i<tbSuhu.getRowCount();i++){
+                if(tbSuhu.getValueAt(i,0).toString().equals("true")&&(!tbSuhu.getValueAt(i,5).toString().equals(""))&&(!tbSuhu.getValueAt(i,12).toString().equals(""))&&tbSuhu.getValueAt(i,15).toString().equals("")){
+                    try {
+                        iddokter=cekViaSatuSehat.tampilIDParktisi(tbSuhu.getValueAt(i,12).toString());
+                        idpasien=cekViaSatuSehat.tampilIDPasien(tbSuhu.getValueAt(i,5).toString());
+                        try{
+                            headers = new HttpHeaders();
+                            headers.setContentType(MediaType.APPLICATION_JSON);
+                            headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
+                            json = "{" +
+                                        "\"resourceType\": \"Observation\"," +
+                                        "\"status\": \"final\"," +
+                                        "\"category\": [" +
                                             "{" +
-                                                "\"system\": \"http://terminology.hl7.org/CodeSystem/condition-clinical\"," +
-                                                "\"code\": \"active\"," +
-                                                "\"display\": \"Active\"" +
+                                                "\"coding\": [" +
+                                                    "{" +
+                                                        "\"system\": \"http://terminology.hl7.org/CodeSystem/observation-category\"," +
+                                                        "\"code\": \"vital-signs\"," +
+                                                        "\"display\": \"Vital Signs\"" +
+                                                    "}" +
+                                                "]" +
                                             "}" +
-                                        "]" +
-                                    "}," +
-                                    "\"category\": [" +
-                                        "{" +
+                                        "]," +
+                                        "\"code\": {" +
                                             "\"coding\": [" +
                                                 "{" +
-                                                    "\"system\": \"http://terminology.hl7.org/CodeSystem/condition-category\"," +
-                                                    "\"code\": \"encounter-diagnosis\"," +
-                                                    "\"display\": \"Encounter Diagnosis\"" +
+                                                    "\"system\": \"http://loinc.org\"," +
+                                                        "\"code\": \"8310-5\"," +
+                                                        "\"display\": \"Body temperature\"" +
                                                 "}" +
                                             "]" +
+                                        "}," +
+                                        "\"subject\": {" +
+                                            "\"reference\": \"Patient/"+idpasien+"\"" +
+                                        "}," +
+                                        "\"encounter\": {" +
+                                            "\"reference\": \"Encounter/"+tbSuhu.getValueAt(i,9).toString()+"\"," +
+                                            "\"display\": \"Pemeriksaan Fisik Suhu Badan "+tbSuhu.getValueAt(i,4).toString()+" Pada Tanggal "+tbSuhu.getValueAt(i,13).toString()+" Jam "+tbSuhu.getValueAt(i,14).toString()+"\"" +
+                                        "}," +
+                                        "\"effectiveDateTime\": \""+tbSuhu.getValueAt(i,13).toString()+"T"+tbSuhu.getValueAt(i,14).toString()+"+07:00\"," +
+                                        "\"valueQuantity\": {" +
+                                        "\"value\": "+tbSuhu.getValueAt(i,10).toString().replaceAll(",",".")+"," +
+                                        "\"unit\": \"C\"," +
+                                        "\"system\": \"http://unitsofmeasure.org\"," +
+                                            "\"code\": \"Cel\"" +
                                         "}" +
-                                    "]," +
-                                    "\"code\": {" +
-                                        "\"coding\": [" +
-                                            "{" +
-                                                "\"system\": \"http://hl7.org/fhir/sid/icd-10\"," +
-                                                "\"code\": \""+tbSuhu.getValueAt(i,10).toString()+"\"," +
-                                                "\"display\": \""+tbSuhu.getValueAt(i,11).toString()+"\"" +
-                                            "}" +
-                                        "]" +
-                                    "}," +
-                                    "\"subject\": {" +
-                                        "\"reference\": \"Patient/"+idpasien+"\"," +
-                                        "\"display\": \""+tbSuhu.getValueAt(i,4).toString()+"\"" +
-                                    "}," +
-                                    "\"encounter\": {" +
-                                        "\"reference\": \"Encounter/"+tbSuhu.getValueAt(i,9).toString()+"\"," +
-                                        "\"display\": \"Kunjungan "+tbSuhu.getValueAt(i,4).toString()+" pada tanggal "+tbSuhu.getValueAt(i,1).toString()+"\"" +
-                                    "}" +
-                                "}";
-                        System.out.println("URL : "+link+"/Condition");
-                        System.out.println("Request JSON : "+json);
-                        requestEntity = new HttpEntity(json,headers);
-                        json=api.getRest().exchange(link+"/Condition", HttpMethod.POST, requestEntity, String.class).getBody();
-                        System.out.println("Result JSON : "+json);
-                        root = mapper.readTree(json);
-                        response = root.path("id");
-                        if(!response.asText().equals("")){
-                            Sequel.menyimpan("satu_sehat_condition","?,?,?,?","Diagnosa",4,new String[]{
-                                tbSuhu.getValueAt(i,2).toString(),tbSuhu.getValueAt(i,10).toString(),tbSuhu.getValueAt(i,7).toString(),response.asText()
-                            });
+                                   "}";
+                            System.out.println("URL : "+link+"/Observation");
+                            System.out.println("Request JSON : "+json);
+                            requestEntity = new HttpEntity(json,headers);
+                            json=api.getRest().exchange(link+"/Observation", HttpMethod.POST, requestEntity, String.class).getBody();
+                            System.out.println("Result JSON : "+json);
+                            root = mapper.readTree(json);
+                            response = root.path("id");
+                            if(!response.asText().equals("")){
+                                Sequel.menyimpan("satu_sehat_observationttvsuhu","?,?,?,?,?","Observation Suhu",5,new String[]{
+                                    tbSuhu.getValueAt(i,2).toString(),tbSuhu.getValueAt(i,13).toString(),tbSuhu.getValueAt(i,14).toString(),tbSuhu.getValueAt(i,7).toString(),response.asText()
+                                });
+                            }
+                        }catch(Exception e){
+                            System.out.println("Notifikasi Bridging : "+e);
                         }
-                    }catch(Exception e){
-                        System.out.println("Notifikasi Bridging : "+e);
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : "+e);
                     }
-                } catch (Exception e) {
-                    System.out.println("Notifikasi : "+e);
                 }
             }
+            tampilsuhu();
         }
-        tampil();
     }//GEN-LAST:event_BtnKirimActionPerformed
 
     private void ppPilihSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPilihSemuaActionPerformed
@@ -652,86 +655,87 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
     }//GEN-LAST:event_ppBersihkanActionPerformed
 
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
-        for(i=0;i<tbSuhu.getRowCount();i++){
-            if(tbSuhu.getValueAt(i,0).toString().equals("true")&&(!tbSuhu.getValueAt(i,5).toString().equals(""))&&(!tbSuhu.getValueAt(i,9).toString().equals(""))&&(!tbSuhu.getValueAt(i,12).toString().equals(""))){
-                try {
-                    idpasien=cekViaSatuSehat.tampilIDPasien(tbSuhu.getValueAt(i,5).toString());
-                    try{
-                        headers = new HttpHeaders();
-                        headers.setContentType(MediaType.APPLICATION_JSON);
-                        headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
-                        json = "{" +
-                                    "\"resourceType\": \"Condition\"," +
-                                    "\"id\": \""+tbSuhu.getValueAt(i,12).toString()+"\"," +
-                                    "\"clinicalStatus\": {" +
-                                        "\"coding\": [" +
+        if(TabRawat.getSelectedIndex()==0){
+            for(i=0;i<tbSuhu.getRowCount();i++){
+                if(tbSuhu.getValueAt(i,0).toString().equals("true")&&(!tbSuhu.getValueAt(i,5).toString().equals(""))&&(!tbSuhu.getValueAt(i,12).toString().equals(""))&&(!tbSuhu.getValueAt(i,15).toString().equals(""))){
+                    try {
+                        iddokter=cekViaSatuSehat.tampilIDParktisi(tbSuhu.getValueAt(i,12).toString());
+                        idpasien=cekViaSatuSehat.tampilIDPasien(tbSuhu.getValueAt(i,5).toString());
+                        try{
+                            headers = new HttpHeaders();
+                            headers.setContentType(MediaType.APPLICATION_JSON);
+                            headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
+                            json = "{" +
+                                        "\"resourceType\": \"Observation\"," +
+                                        "\"id\": \""+tbSuhu.getValueAt(i,15).toString()+"\"," +
+                                        "\"status\": \"final\"," +
+                                        "\"category\": [" +
                                             "{" +
-                                                "\"system\": \"http://terminology.hl7.org/CodeSystem/condition-clinical\"," +
-                                                "\"code\": \"active\"," +
-                                                "\"display\": \"Active\"" +
+                                                "\"coding\": [" +
+                                                    "{" +
+                                                        "\"system\": \"http://terminology.hl7.org/CodeSystem/observation-category\"," +
+                                                        "\"code\": \"vital-signs\"," +
+                                                        "\"display\": \"Vital Signs\"" +
+                                                    "}" +
+                                                "]" +
                                             "}" +
-                                        "]" +
-                                    "}," +
-                                    "\"category\": [" +
-                                        "{" +
+                                        "]," +
+                                        "\"code\": {" +
                                             "\"coding\": [" +
                                                 "{" +
-                                                    "\"system\": \"http://terminology.hl7.org/CodeSystem/condition-category\"," +
-                                                    "\"code\": \"encounter-diagnosis\"," +
-                                                    "\"display\": \"Encounter Diagnosis\"" +
+                                                    "\"system\": \"http://loinc.org\"," +
+                                                        "\"code\": \"8310-5\"," +
+                                                        "\"display\": \"Body temperature\"" +
                                                 "}" +
                                             "]" +
+                                        "}," +
+                                        "\"subject\": {" +
+                                            "\"reference\": \"Patient/"+idpasien+"\"" +
+                                        "}," +
+                                        "\"encounter\": {" +
+                                            "\"reference\": \"Encounter/"+tbSuhu.getValueAt(i,9).toString()+"\"," +
+                                            "\"display\": \"Pemeriksaan Fisik Suhu Badan "+tbSuhu.getValueAt(i,4).toString()+" Pada Tanggal "+tbSuhu.getValueAt(i,13).toString()+" Jam "+tbSuhu.getValueAt(i,14).toString()+"\"" +
+                                        "}," +
+                                        "\"effectiveDateTime\": \""+tbSuhu.getValueAt(i,13).toString()+"T"+tbSuhu.getValueAt(i,14).toString()+"+07:00\"," +
+                                        "\"valueQuantity\": {" +
+                                        "\"value\": "+tbSuhu.getValueAt(i,13).toString().replaceAll(",",".")+"," +
+                                        "\"unit\": \"C\"," +
+                                        "\"system\": \"http://unitsofmeasure.org\"," +
+                                            "\"code\": \"Cel\"" +
                                         "}" +
-                                    "]," +
-                                    "\"code\": {" +
-                                        "\"coding\": [" +
-                                            "{" +
-                                                "\"system\": \"http://hl7.org/fhir/sid/icd-10\"," +
-                                                "\"code\": \""+tbSuhu.getValueAt(i,10).toString()+"\"," +
-                                                "\"display\": \""+tbSuhu.getValueAt(i,11).toString()+"\"" +
-                                            "}" +
-                                        "]" +
-                                    "}," +
-                                    "\"subject\": {" +
-                                        "\"reference\": \"Patient/"+idpasien+"\"," +
-                                        "\"display\": \""+tbSuhu.getValueAt(i,4).toString()+"\"" +
-                                    "}," +
-                                    "\"encounter\": {" +
-                                        "\"reference\": \"Encounter/"+tbSuhu.getValueAt(i,9).toString()+"\"," +
-                                        "\"display\": \"Kunjungan "+tbSuhu.getValueAt(i,4).toString()+" pada tanggal "+tbSuhu.getValueAt(i,1).toString()+"\"" +
-                                    "}" +
-                                "}";
-                        System.out.println("URL : "+link+"/Condition/"+tbSuhu.getValueAt(i,12).toString());
-                        System.out.println("Request JSON : "+json);
-                        requestEntity = new HttpEntity(json,headers);
-                        json=api.getRest().exchange(link+"/Condition/"+tbSuhu.getValueAt(i,12).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
-                        System.out.println("Result JSON : "+json);
-                    }catch(Exception e){
-                        System.out.println("Notifikasi Bridging : "+e);
+                                   "}";
+                            System.out.println("URL : "+link+"/Observation/"+tbSuhu.getValueAt(i,15).toString());
+                            System.out.println("Request JSON : "+json);
+                            requestEntity = new HttpEntity(json,headers);
+                            json=api.getRest().exchange(link+"/Observation/"+tbSuhu.getValueAt(i,15).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
+                            System.out.println("Result JSON : "+json);
+                        }catch(Exception e){
+                            System.out.println("Notifikasi Bridging : "+e);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : "+e);
                     }
-                } catch (Exception e) {
-                    System.out.println("Notifikasi : "+e);
                 }
             }
+            tampilsuhu();
         }
-        tampil();
     }//GEN-LAST:event_BtnUpdateActionPerformed
 
     private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
         if(TabRawat.getSelectedIndex()==0){
-            tampil();
+            tampilsuhu();
         }
     }//GEN-LAST:event_TabRawatMouseClicked
 
     private void BtnAll1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAll1ActionPerformed
         TCari.setText("");
-        tampil();
+        TabRawatMouseClicked(null);
     }//GEN-LAST:event_BtnAll1ActionPerformed
 
     private void BtnAll1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAll1KeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             TCari.setText("");
-            tampil();
+            tampilsuhu();
         }else{
             Valid.pindah(evt, BtnPrint, BtnKeluar);
         }
@@ -793,7 +797,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
     private widget.Table tbTensi;
     // End of variables declaration//GEN-END:variables
     
-    private void tampil() {
+    private void tampilsuhu() {
         Valid.tabelKosong(tabModeSuhu);
         try{
             ps=koneksi.prepareStatement(
@@ -809,6 +813,50 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                    (TCari.getText().equals("")?"":"and (reg_periksa.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
                    "pasien.nm_pasien like ? or pasien.no_ktp like ? or pegawai.no_ktp like ? or pegawai.nama like ? or "+
                    "reg_periksa.stts like ?)")+" order by reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.no_rawat,pemeriksaan_ralan.tgl_perawatan,pemeriksaan_ralan.jam_rawat");
+            try {
+                ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+""));
+                ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+""));
+                if(!TCari.getText().equals("")){
+                    ps.setString(3,"%"+TCari.getText()+"%");
+                    ps.setString(4,"%"+TCari.getText()+"%");
+                    ps.setString(5,"%"+TCari.getText()+"%");
+                    ps.setString(6,"%"+TCari.getText()+"%");
+                    ps.setString(7,"%"+TCari.getText()+"%");
+                    ps.setString(8,"%"+TCari.getText()+"%");
+                    ps.setString(9,"%"+TCari.getText()+"%");
+                }
+                rs=ps.executeQuery();
+                while(rs.next()){
+                    tabModeSuhu.addRow(new Object[]{
+                        false,rs.getString("tgl_registrasi")+" "+rs.getString("jam_reg"),rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),
+                        rs.getString("no_ktp"),rs.getString("stts"),"Ralan",rs.getString("pulang"),rs.getString("id_encounter"),rs.getString("suhu_tubuh"),
+                        rs.getString("nama"),rs.getString("ktppraktisi"),rs.getString("tgl_perawatan"),rs.getString("jam_rawat"),""
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : "+e);
+            } finally{
+                if(rs!=null){
+                    rs.close();
+                }
+                if(ps!=null){
+                    ps.close();
+                }
+            }
+            
+            ps=koneksi.prepareStatement(
+                   "select reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.no_ktp,"+
+                   "reg_periksa.stts,DATE_FORMAT(tagihan_sadewa.tgl_bayar,'%Y-%m-%d %H:%i:%s') as pulang,satu_sehat_encounter.id_encounter,"+
+                   "pegawai.nama,pegawai.no_ktp as ktppraktisi,pemeriksaan_ranap.tgl_perawatan,pemeriksaan_ranap.jam_rawat,pemeriksaan_ranap.suhu_tubuh, "+
+                   "ifnull(satu_sehat_observationttvsuhu.id_observation,'') as satu_sehat_observationttvsuhu from reg_periksa inner join pasien "+
+                   "on reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join tagihan_sadewa on tagihan_sadewa.no_nota=reg_periksa.no_rawat "+
+                   "inner join satu_sehat_encounter on satu_sehat_encounter.no_rawat=reg_periksa.no_rawat inner join pemeriksaan_ranap on pemeriksaan_ranap.no_rawat=reg_periksa.no_rawat "+
+                   "inner join pegawai on pemeriksaan_ranap.nip=pegawai.nik left join satu_sehat_observationttvsuhu on satu_sehat_observationttvsuhu.no_rawat=pemeriksaan_ranap.no_rawat "+
+                   "and satu_sehat_observationttvsuhu.tgl_perawatan=pemeriksaan_ranap.tgl_perawatan and satu_sehat_observationttvsuhu.jam_rawat=pemeriksaan_ranap.jam_rawat "+
+                   "where pemeriksaan_ranap.suhu_tubuh<>'' and reg_periksa.tgl_registrasi between ? and ? "+
+                   (TCari.getText().equals("")?"":"and (reg_periksa.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
+                   "pasien.nm_pasien like ? or pasien.no_ktp like ? or pegawai.no_ktp like ? or pegawai.nama like ? or "+
+                   "reg_periksa.stts like ?)")+" order by reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.no_rawat,pemeriksaan_ranap.tgl_perawatan,pemeriksaan_ranap.jam_rawat");
             try {
                 ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+""));
                 ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+""));

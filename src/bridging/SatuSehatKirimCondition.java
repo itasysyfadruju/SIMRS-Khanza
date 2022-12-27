@@ -42,7 +42,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;   
     private int i=0;
-    private String link="",json="",iddokter="",idpasien="";
+    private String link="",json="",idpasien="";
     private ApiSatuSehat api=new ApiSatuSehat();
     private HttpHeaders headers ;
     private HttpEntity requestEntity;
