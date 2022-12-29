@@ -307,9 +307,9 @@ public class frmUtama extends javax.swing.JFrame {
                                     //System.out.println(api.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
                                     root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
                                     nameNode = root.path("metadata");
-                                    if(nameNode.path("code").asText().equals("200")){
-                                        Sequel.queryu2("update referensi_mobilejkn_bpjs set statuskirim='Sudah' where nomorreferensi='"+rs.getString("nomorreferensi")+"'");
-                                    }  
+                                    if(nameNode.path("code").asText().equals("200")||nameNode.path("message").asText().equals("Ok")){
+                                        Sequel.queryu2("update referensi_mobilejkn_bpjs set statuskirim='Sudah' where nobooking='"+rs.getString("nobooking")+"'");
+                                    }   
                                     TeksArea.append("respon WS BPJS : "+nameNode.path("code").asText()+" "+nameNode.path("message").asText()+"\n");
                                 }catch (Exception ex) {
                                     System.out.println("Notifikasi Bridging : "+ex);
