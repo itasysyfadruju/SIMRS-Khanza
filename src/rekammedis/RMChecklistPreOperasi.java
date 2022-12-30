@@ -104,11 +104,17 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
             }else if(i==11){
                 column.setPreferredWidth(150);
             }else if(i==12){
-                column.setPreferredWidth(55);
+                column.setPreferredWidth(53);
             }else if(i==13){
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(85);
             }else if(i==14){
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(95);
+            }else if(i==15){
+                column.setPreferredWidth(110);
+            }else if(i==16){
+                column.setPreferredWidth(110);
+            }else if(i==17){
+                column.setPreferredWidth(110);
             }
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
