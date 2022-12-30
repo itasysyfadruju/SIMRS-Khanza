@@ -35,20 +35,22 @@ import org.springframework.http.MediaType;
  * @author dosen
  */
 public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
-    private final DefaultTableModel tabModeSuhu,tabModeRespirasi,tabModeNadi,tabModeSpO2,tabModeGCS,tabModeKesadaran;
+    private final DefaultTableModel tabModeSuhu,tabModeRespirasi,tabModeNadi,tabModeSpO2,tabModeGCS,tabModeKesadaran,
+                  tabModeTensi;
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
     private Connection koneksi=koneksiDB.condb();
     private PreparedStatement ps;
     private ResultSet rs;   
     private int i=0;
-    private String link="",json="",iddokter="",idpasien="";
+    private String link="",json="",iddokter="",idpasien="",sistole="0",diastole="0";
     private ApiSatuSehat api=new ApiSatuSehat();
     private HttpHeaders headers ;
     private HttpEntity requestEntity;
     private ObjectMapper mapper = new ObjectMapper();
     private JsonNode root;
     private JsonNode response;
+    private String[] arrSplit;
     private SatuSehatCekNIK cekViaSatuSehat=new SatuSehatCekNIK();    
     
     /** Creates new form DlgKamar
@@ -462,6 +464,73 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
             }
         }
         tbKesadaran.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabModeTensi=new DefaultTableModel(null,new String[]{
+                "P","Tanggal Registrasi","No.Rawat","No.RM","Nama Pasien","No.KTP Pasien","Stts Rawat","Stts Lanjut",
+                "Tanggal Pulang","ID Encounter","Tensi","Petugas/Dokter/Praktisi","No.KTP Praktisi","Tanggal","Jam",
+                "ID Observation Tensi"
+            }){
+              @Override public boolean isCellEditable(int rowIndex, int colIndex){
+                boolean a = false;
+                if (colIndex==0) {
+                    a=true;
+                }
+                return a;
+             }
+             Class[] types = new Class[] {
+                 java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, 
+                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, 
+                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, 
+                 java.lang.String.class
+             };
+             @Override
+             public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+             }
+        };
+        tbTensi.setModel(tabModeTensi);
+
+        //tbKamar.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbKamar.getBackground()));
+        tbTensi.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbTensi.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 16; i++) {
+            TableColumn column = tbTensi.getColumnModel().getColumn(i);
+            if(i==0){
+                column.setPreferredWidth(20);
+            }else if(i==1){
+                column.setPreferredWidth(110);
+            }else if(i==2){
+                column.setPreferredWidth(105);
+            }else if(i==3){
+                column.setPreferredWidth(70);
+            }else if(i==4){
+                column.setPreferredWidth(150);
+            }else if(i==5){
+                column.setPreferredWidth(110);
+            }else if(i==6){
+                column.setPreferredWidth(63);
+            }else if(i==7){
+                column.setPreferredWidth(63);
+            }else if(i==8){
+                column.setPreferredWidth(110);
+            }else if(i==9){
+                column.setPreferredWidth(215);
+            }else if(i==10){
+                column.setPreferredWidth(55);
+            }else if(i==11){
+                column.setPreferredWidth(150);
+            }else if(i==12){
+                column.setPreferredWidth(110);
+            }else if(i==13){
+                column.setPreferredWidth(65);
+            }else if(i==14){
+                column.setPreferredWidth(55);
+            }else if(i==15){
+                column.setPreferredWidth(215);
+            }
+        }
+        tbTensi.setDefaultRenderer(Object.class, new WarnaTable());
         
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
         
@@ -1363,62 +1432,201 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                 }
             }
             tampilkesadaran();
+        }else if(TabRawat.getSelectedIndex()==6){
+            for(i=0;i<tbTensi.getRowCount();i++){
+                if(tbTensi.getValueAt(i,0).toString().equals("true")&&(!tbTensi.getValueAt(i,5).toString().equals(""))&&(!tbTensi.getValueAt(i,12).toString().equals(""))&&tbTensi.getValueAt(i,15).toString().equals("")){
+                    try {
+                        iddokter=cekViaSatuSehat.tampilIDParktisi(tbTensi.getValueAt(i,12).toString());
+                        idpasien=cekViaSatuSehat.tampilIDPasien(tbTensi.getValueAt(i,5).toString());
+                        arrSplit = tbTensi.getValueAt(i,10).toString().split("/");
+                        sistole="0";
+                        try {
+                            if(!arrSplit[0].equals("")){
+                                sistole=arrSplit[0];
+                            }
+                        } catch (Exception e) {
+                            sistole="0";
+                        }
+                        diastole="0";
+                        try {
+                            if(!arrSplit[1].equals("")){
+                                diastole=arrSplit[1];
+                            }
+                        } catch (Exception e) {
+                            diastole="0";
+                        }
+                        try{
+                            headers = new HttpHeaders();
+                            headers.setContentType(MediaType.APPLICATION_JSON);
+                            headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
+                            json = "{" +
+                                        "\"resourceType\": \"Observation\"," +
+                                        "\"status\": \"final\"," +
+                                        "\"category\": [" +
+                                            "{" +
+                                                "\"coding\": [" +
+                                                    "{" +
+                                                        "\"system\": \"http://terminology.hl7.org/CodeSystem/observation-category\"," +
+                                                        "\"code\": \"vital-signs\"," +
+                                                        "\"display\": \"Vital Signs\"" +
+                                                    "}" +
+                                                "]" +
+                                            "}" +
+                                        "]," +
+                                        "\"code\": {" +
+                                            "\"coding\": [" +
+                                                "{" +
+                                                    "\"system\": \"http://loinc.org\"," +
+                                                    "\"code\": \"35094-2\"," +
+                                                    "\"display\": \"Blood pressure panel\"" +
+                                                "}" +
+                                            "]," +
+                                            "\"text\": \"Blood pressure systolic & diastolic\"" +
+                                        "}," +
+                                        "\"subject\": {" +
+                                            "\"reference\": \"Patient/"+idpasien+"\"" +
+                                        "}," +
+                                        "\"performer\": [" +
+                                            "{" +
+                                                "\"reference\": \"Practitioner/"+iddokter+"\"" +
+                                            "}," +
+                                            "{" +
+                                                "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"" +
+                                            "}" +
+                                        "]," +
+                                        "\"encounter\": {" +
+                                            "\"reference\": \"Encounter/"+tbTensi.getValueAt(i,9).toString()+"\"," +
+                                            "\"display\": \"Pemeriksaan Fisik Tensi "+tbTensi.getValueAt(i,4).toString()+" Pada Tanggal "+tbTensi.getValueAt(i,13).toString()+" Jam "+tbTensi.getValueAt(i,14).toString()+"\"" +
+                                        "}," +
+                                        "\"effectiveDateTime\": \""+tbTensi.getValueAt(i,13).toString()+"T"+tbTensi.getValueAt(i,14).toString()+"+07:00\"," +
+                                        "\"component\" : ["+
+                                            "{" +
+                                                "\"code\" : {" +
+                                                    "\"coding\" : ["+
+                                                        "{" +
+                                                            "\"system\" : \"http://loinc.org\"," +
+                                                            "\"code\" : \"8480-6\"," +
+                                                            "\"display\" : \"Systolic blood pressure\"" +
+                                                        "}" +
+                                                    "]" +
+                                                "}," +
+                                                "\"valueQuantity\" : {" +
+                                                    "\"value\" : "+sistole+"," +
+                                                    "\"unit\" : \"mmHg\"," +
+                                                    "\"system\" : \"http://unitsofmeasure.org\"," +
+                                                    "\"code\" : \"mm[Hg]\"" +
+                                                "}" +
+                                            "}," +
+                                            "{" +
+                                                "\"code\" : {" +
+                                                    "\"coding\" : ["+
+                                                        "{" +
+                                                            "\"system\" : \"http://loinc.org\"," +
+                                                            "\"code\" : \"8462-4\"," +
+                                                            "\"display\" : \"Diastolic blood pressure\"" +
+                                                        "}"+
+                                                    "]" +
+                                                "}," +
+                                                "\"valueQuantity\" : {" +
+                                                    "\"value\" : "+diastole+"," +
+                                                    "\"unit\" : \"mmHg\"," +
+                                                    "\"system\" : \"http://unitsofmeasure.org\"," +
+                                                    "\"code\" : \"mm[Hg]\"" +
+                                                "}" +
+                                            "}"+
+                                        "]" +
+                                   "}";
+                            System.out.println("URL : "+link+"/Observation");
+                            System.out.println("Request JSON : "+json);
+                            requestEntity = new HttpEntity(json,headers);
+                            json=api.getRest().exchange(link+"/Observation", HttpMethod.POST, requestEntity, String.class).getBody();
+                            System.out.println("Result JSON : "+json);
+                            root = mapper.readTree(json);
+                            response = root.path("id");
+                            if(!response.asText().equals("")){
+                                Sequel.menyimpan("satu_sehat_observationttvtensi","?,?,?,?,?","Observation Tensi",5,new String[]{
+                                    tbTensi.getValueAt(i,2).toString(),tbTensi.getValueAt(i,13).toString(),tbTensi.getValueAt(i,14).toString(),tbTensi.getValueAt(i,7).toString(),response.asText()
+                                });
+                            }
+                        }catch(Exception e){
+                            System.out.println("Notifikasi Bridging : "+e);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : "+e);
+                    }
+                }
+            }
+            tampiltensi();
         }
     }//GEN-LAST:event_BtnKirimActionPerformed
 
     private void ppPilihSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPilihSemuaActionPerformed
-        if(TabRawat.getSelectedIndex()==0){
-            for(i=0;i<tbSuhu.getRowCount();i++){
-                tbSuhu.setValueAt(true,i,0);
-            }
-        }else if(TabRawat.getSelectedIndex()==1){
-            for(i=0;i<tbRespirasi.getRowCount();i++){
-                tbRespirasi.setValueAt(true,i,0);
-            }
-        }else if(TabRawat.getSelectedIndex()==2){
-            for(i=0;i<tbNadi.getRowCount();i++){
-                tbNadi.setValueAt(true,i,0);
-            }
-        }else if(TabRawat.getSelectedIndex()==3){
-            for(i=0;i<tbSpO2.getRowCount();i++){
-                tbSpO2.setValueAt(true,i,0);
-            }
-        }else if(TabRawat.getSelectedIndex()==4){
-            for(i=0;i<tbGCS.getRowCount();i++){
-                tbGCS.setValueAt(true,i,0);
-            }
-        }else if(TabRawat.getSelectedIndex()==5){
-            for(i=0;i<tbKesadaran.getRowCount();i++){
-                tbKesadaran.setValueAt(true,i,0);
-            }
+        switch (TabRawat.getSelectedIndex()) {
+            case 0:
+                for(i=0;i<tbSuhu.getRowCount();i++){
+                    tbSuhu.setValueAt(true,i,0);
+                }   break;
+            case 1:
+                for(i=0;i<tbRespirasi.getRowCount();i++){
+                    tbRespirasi.setValueAt(true,i,0);
+                }   break;
+            case 2:
+                for(i=0;i<tbNadi.getRowCount();i++){
+                    tbNadi.setValueAt(true,i,0);
+                }   break;
+            case 3:
+                for(i=0;i<tbSpO2.getRowCount();i++){
+                    tbSpO2.setValueAt(true,i,0);
+                }   break;
+            case 4:
+                for(i=0;i<tbGCS.getRowCount();i++){
+                    tbGCS.setValueAt(true,i,0);
+                }   break;
+            case 5:
+                for(i=0;i<tbKesadaran.getRowCount();i++){
+                    tbKesadaran.setValueAt(true,i,0);
+                }   break;
+            case 6:
+                for(i=0;i<tbTensi.getRowCount();i++){
+                    tbTensi.setValueAt(true,i,0);
+                }   break;
+            default:
+                break;
         }
     }//GEN-LAST:event_ppPilihSemuaActionPerformed
 
     private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppBersihkanActionPerformed
-        if(TabRawat.getSelectedIndex()==0){
-            for(i=0;i<tbSuhu.getRowCount();i++){
-                tbSuhu.setValueAt(false,i,0);
-            }
-        }else if(TabRawat.getSelectedIndex()==1){
-            for(i=0;i<tbRespirasi.getRowCount();i++){
-                tbRespirasi.setValueAt(false,i,0);
-            }
-        }else if(TabRawat.getSelectedIndex()==2){
-            for(i=0;i<tbNadi.getRowCount();i++){
-                tbNadi.setValueAt(false,i,0);
-            }
-        }else if(TabRawat.getSelectedIndex()==3){
-            for(i=0;i<tbSpO2.getRowCount();i++){
-                tbSpO2.setValueAt(false,i,0);
-            }
-        }else if(TabRawat.getSelectedIndex()==4){
-            for(i=0;i<tbGCS.getRowCount();i++){
-                tbGCS.setValueAt(false,i,0);
-            }
-        }else if(TabRawat.getSelectedIndex()==5){
-            for(i=0;i<tbKesadaran.getRowCount();i++){
-                tbKesadaran.setValueAt(false,i,0);
-            }
+        switch (TabRawat.getSelectedIndex()) {
+            case 0:
+                for(i=0;i<tbSuhu.getRowCount();i++){
+                    tbSuhu.setValueAt(false,i,0);
+                }   break;
+            case 1:
+                for(i=0;i<tbRespirasi.getRowCount();i++){
+                    tbRespirasi.setValueAt(false,i,0);
+                }   break;
+            case 2:
+                for(i=0;i<tbNadi.getRowCount();i++){
+                    tbNadi.setValueAt(false,i,0);
+                }   break;
+            case 3:
+                for(i=0;i<tbSpO2.getRowCount();i++){
+                    tbSpO2.setValueAt(false,i,0);
+                }   break;
+            case 4:
+                for(i=0;i<tbGCS.getRowCount();i++){
+                    tbGCS.setValueAt(false,i,0);
+                }   break;
+            case 5:
+                for(i=0;i<tbKesadaran.getRowCount();i++){
+                    tbKesadaran.setValueAt(false,i,0);
+                }   break;
+            case 6:
+                for(i=0;i<tbTensi.getRowCount();i++){
+                    tbTensi.setValueAt(false,i,0);
+                }   break;
+            default:
+                break;
         }
     }//GEN-LAST:event_ppBersihkanActionPerformed
 
@@ -1845,22 +2053,136 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                 }
             }
             tampilkesadaran();
+        }else if(TabRawat.getSelectedIndex()==6){
+            for(i=0;i<tbTensi.getRowCount();i++){
+                if(tbTensi.getValueAt(i,0).toString().equals("true")&&(!tbTensi.getValueAt(i,5).toString().equals(""))&&(!tbTensi.getValueAt(i,12).toString().equals(""))&&(!tbTensi.getValueAt(i,15).toString().equals(""))){
+                    try {
+                        iddokter=cekViaSatuSehat.tampilIDParktisi(tbTensi.getValueAt(i,12).toString());
+                        idpasien=cekViaSatuSehat.tampilIDPasien(tbTensi.getValueAt(i,5).toString());
+                        try{
+                            headers = new HttpHeaders();
+                            headers.setContentType(MediaType.APPLICATION_JSON);
+                            headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
+                            json = "{" +
+                                        "\"resourceType\": \"Observation\"," +
+                                        "\"id\": \""+tbTensi.getValueAt(i,15).toString()+"\"," +
+                                        "\"status\": \"final\"," +
+                                        "\"category\": [" +
+                                            "{" +
+                                                "\"coding\": [" +
+                                                    "{" +
+                                                        "\"system\": \"http://terminology.hl7.org/CodeSystem/observation-category\"," +
+                                                        "\"code\": \"vital-signs\"," +
+                                                        "\"display\": \"Vital Signs\"" +
+                                                    "}" +
+                                                "]" +
+                                            "}" +
+                                        "]," +
+                                        "\"code\": {" +
+                                            "\"coding\": [" +
+                                                "{" +
+                                                    "\"system\": \"http://loinc.org\"," +
+                                                    "\"code\": \"35094-2\"," +
+                                                    "\"display\": \"Blood pressure panel\"" +
+                                                "}" +
+                                            "]," +
+                                            "\"text\": \"Blood pressure systolic & diastolic\"" +
+                                        "}," +
+                                        "\"subject\": {" +
+                                            "\"reference\": \"Patient/"+idpasien+"\"" +
+                                        "}," +
+                                        "\"performer\": [" +
+                                            "{" +
+                                                "\"reference\": \"Practitioner/"+iddokter+"\"" +
+                                            "}," +
+                                            "{" +
+                                                "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"" +
+                                            "}" +
+                                        "]," +
+                                        "\"encounter\": {" +
+                                            "\"reference\": \"Encounter/"+tbTensi.getValueAt(i,9).toString()+"\"," +
+                                            "\"display\": \"Pemeriksaan Fisik Tensi "+tbTensi.getValueAt(i,4).toString()+" Pada Tanggal "+tbTensi.getValueAt(i,13).toString()+" Jam "+tbTensi.getValueAt(i,14).toString()+"\"" +
+                                        "}," +
+                                        "\"effectiveDateTime\": \""+tbTensi.getValueAt(i,13).toString()+"T"+tbTensi.getValueAt(i,14).toString()+"+07:00\"," +
+                                        "\"component\" : ["+
+                                            "{" +
+                                                "\"code\" : {" +
+                                                    "\"coding\" : ["+
+                                                        "{" +
+                                                            "\"system\" : \"http://loinc.org\"," +
+                                                            "\"code\" : \"8480-6\"," +
+                                                            "\"display\" : \"Systolic blood pressure\"" +
+                                                        "}" +
+                                                    "]" +
+                                                "}," +
+                                                "\"valueQuantity\" : {" +
+                                                    "\"value\" : "+sistole+"," +
+                                                    "\"unit\" : \"mmHg\"," +
+                                                    "\"system\" : \"http://unitsofmeasure.org\"," +
+                                                    "\"code\" : \"mm[Hg]\"" +
+                                                "}" +
+                                            "}," +
+                                            "{" +
+                                                "\"code\" : {" +
+                                                    "\"coding\" : ["+
+                                                        "{" +
+                                                            "\"system\" : \"http://loinc.org\"," +
+                                                            "\"code\" : \"8462-4\"," +
+                                                            "\"display\" : \"Diastolic blood pressure\"" +
+                                                        "}"+
+                                                    "]" +
+                                                "}," +
+                                                "\"valueQuantity\" : {" +
+                                                    "\"value\" : "+diastole+"," +
+                                                    "\"unit\" : \"mmHg\"," +
+                                                    "\"system\" : \"http://unitsofmeasure.org\"," +
+                                                    "\"code\" : \"mm[Hg]\"" +
+                                                "}" +
+                                            "}"+
+                                        "]" +
+                                   "}";
+                            System.out.println("URL : "+link+"/Observation/"+tbTensi.getValueAt(i,15).toString());
+                            System.out.println("Request JSON : "+json);
+                            requestEntity = new HttpEntity(json,headers);
+                            json=api.getRest().exchange(link+"/Observation/"+tbTensi.getValueAt(i,15).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
+                            System.out.println("Result JSON : "+json);
+                        }catch(Exception e){
+                            System.out.println("Notifikasi Bridging : "+e);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : "+e);
+                    }
+                }
+            }
+            tampiltensi();
         }
     }//GEN-LAST:event_BtnUpdateActionPerformed
 
     private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
-        if(TabRawat.getSelectedIndex()==0){
-            tampilsuhu();
-        }else if(TabRawat.getSelectedIndex()==1){
-            tampilrespirasi();
-        }else if(TabRawat.getSelectedIndex()==2){
-            tampilnadi();
-        }else if(TabRawat.getSelectedIndex()==3){
-            tampilspo2();
-        }else if(TabRawat.getSelectedIndex()==4){
-            tampilgcs();
-        }else if(TabRawat.getSelectedIndex()==5){
-            tampilkesadaran();
+        switch (TabRawat.getSelectedIndex()) {
+            case 0:
+                tampilsuhu();
+                break;
+            case 1:
+                tampilrespirasi();
+                break;
+            case 2:
+                tampilnadi();
+                break;
+            case 3:
+                tampilspo2();
+                break;
+            case 4:
+                tampilgcs();
+                break;
+            case 5:
+                tampilkesadaran();
+                break;
+            case 6:
+                tampiltensi();
+                break;
+            default:
+                break;
         }
     }//GEN-LAST:event_TabRawatMouseClicked
 
@@ -2508,6 +2830,102 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
             System.out.println("Notifikasi : "+e);
         }
         LCount.setText(""+tabModeKesadaran.getRowCount());
+    }
+    
+    private void tampiltensi() {
+        Valid.tabelKosong(tabModeTensi);
+        try{
+            ps=koneksi.prepareStatement(
+                   "select reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.no_ktp,"+
+                   "reg_periksa.stts,DATE_FORMAT(tagihan_sadewa.tgl_bayar,'%Y-%m-%d %H:%i:%s') as pulang,satu_sehat_encounter.id_encounter,"+
+                   "pegawai.nama,pegawai.no_ktp as ktppraktisi,pemeriksaan_ralan.tgl_perawatan,pemeriksaan_ralan.jam_rawat,pemeriksaan_ralan.tensi, "+
+                   "ifnull(satu_sehat_observationttvtensi.id_observation,'') as satu_sehat_observationttvtensi from reg_periksa inner join pasien "+
+                   "on reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join tagihan_sadewa on tagihan_sadewa.no_nota=reg_periksa.no_rawat "+
+                   "inner join satu_sehat_encounter on satu_sehat_encounter.no_rawat=reg_periksa.no_rawat inner join pemeriksaan_ralan on pemeriksaan_ralan.no_rawat=reg_periksa.no_rawat "+
+                   "inner join pegawai on pemeriksaan_ralan.nip=pegawai.nik left join satu_sehat_observationttvtensi on satu_sehat_observationttvtensi.no_rawat=pemeriksaan_ralan.no_rawat "+
+                   "and satu_sehat_observationttvtensi.tgl_perawatan=pemeriksaan_ralan.tgl_perawatan and satu_sehat_observationttvtensi.jam_rawat=pemeriksaan_ralan.jam_rawat "+
+                   "and satu_sehat_observationttvtensi.status='Ralan' where pemeriksaan_ralan.tensi<>'' and reg_periksa.tgl_registrasi between ? and ? "+
+                   (TCari.getText().equals("")?"":"and (reg_periksa.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
+                   "pasien.nm_pasien like ? or pasien.no_ktp like ? or pegawai.no_ktp like ? or pegawai.nama like ? or "+
+                   "reg_periksa.stts like ?)")+" order by reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.no_rawat,pemeriksaan_ralan.tgl_perawatan,pemeriksaan_ralan.jam_rawat");
+            try {
+                ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+""));
+                ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+""));
+                if(!TCari.getText().equals("")){
+                    ps.setString(3,"%"+TCari.getText()+"%");
+                    ps.setString(4,"%"+TCari.getText()+"%");
+                    ps.setString(5,"%"+TCari.getText()+"%");
+                    ps.setString(6,"%"+TCari.getText()+"%");
+                    ps.setString(7,"%"+TCari.getText()+"%");
+                    ps.setString(8,"%"+TCari.getText()+"%");
+                    ps.setString(9,"%"+TCari.getText()+"%");
+                }
+                rs=ps.executeQuery();
+                while(rs.next()){
+                    tabModeTensi.addRow(new Object[]{
+                        false,rs.getString("tgl_registrasi")+" "+rs.getString("jam_reg"),rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),
+                        rs.getString("no_ktp"),rs.getString("stts"),"Ralan",rs.getString("pulang"),rs.getString("id_encounter"),rs.getString("tensi"),
+                        rs.getString("nama"),rs.getString("ktppraktisi"),rs.getString("tgl_perawatan"),rs.getString("jam_rawat"),rs.getString("satu_sehat_observationttvtensi")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : "+e);
+            } finally{
+                if(rs!=null){
+                    rs.close();
+                }
+                if(ps!=null){
+                    ps.close();
+                }
+            }
+            
+            ps=koneksi.prepareStatement(
+                   "select reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.no_ktp,"+
+                   "reg_periksa.stts,DATE_FORMAT(tagihan_sadewa.tgl_bayar,'%Y-%m-%d %H:%i:%s') as pulang,satu_sehat_encounter.id_encounter,"+
+                   "pegawai.nama,pegawai.no_ktp as ktppraktisi,pemeriksaan_ranap.tgl_perawatan,pemeriksaan_ranap.jam_rawat,pemeriksaan_ranap.tensi, "+
+                   "ifnull(satu_sehat_observationttvtensi.id_observation,'') as satu_sehat_observationttvtensi from reg_periksa inner join pasien "+
+                   "on reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join tagihan_sadewa on tagihan_sadewa.no_nota=reg_periksa.no_rawat "+
+                   "inner join satu_sehat_encounter on satu_sehat_encounter.no_rawat=reg_periksa.no_rawat inner join pemeriksaan_ranap on pemeriksaan_ranap.no_rawat=reg_periksa.no_rawat "+
+                   "inner join pegawai on pemeriksaan_ranap.nip=pegawai.nik left join satu_sehat_observationttvtensi on satu_sehat_observationttvtensi.no_rawat=pemeriksaan_ranap.no_rawat "+
+                   "and satu_sehat_observationttvtensi.tgl_perawatan=pemeriksaan_ranap.tgl_perawatan and satu_sehat_observationttvtensi.jam_rawat=pemeriksaan_ranap.jam_rawat "+
+                   "and satu_sehat_observationttvtensi.status='Ranap' where pemeriksaan_ranap.tensi<>'' and reg_periksa.tgl_registrasi between ? and ? "+
+                   (TCari.getText().equals("")?"":"and (reg_periksa.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
+                   "pasien.nm_pasien like ? or pasien.no_ktp like ? or pegawai.no_ktp like ? or pegawai.nama like ? or "+
+                   "reg_periksa.stts like ?)")+" order by reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.no_rawat,pemeriksaan_ranap.tgl_perawatan,pemeriksaan_ranap.jam_rawat");
+            try {
+                ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+""));
+                ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+""));
+                if(!TCari.getText().equals("")){
+                    ps.setString(3,"%"+TCari.getText()+"%");
+                    ps.setString(4,"%"+TCari.getText()+"%");
+                    ps.setString(5,"%"+TCari.getText()+"%");
+                    ps.setString(6,"%"+TCari.getText()+"%");
+                    ps.setString(7,"%"+TCari.getText()+"%");
+                    ps.setString(8,"%"+TCari.getText()+"%");
+                    ps.setString(9,"%"+TCari.getText()+"%");
+                }
+                rs=ps.executeQuery();
+                while(rs.next()){
+                    tabModeTensi.addRow(new Object[]{
+                        false,rs.getString("tgl_registrasi")+" "+rs.getString("jam_reg"),rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),
+                        rs.getString("no_ktp"),rs.getString("stts"),"Ralan",rs.getString("pulang"),rs.getString("id_encounter"),rs.getString("tensi"),
+                        rs.getString("nama"),rs.getString("ktppraktisi"),rs.getString("tgl_perawatan"),rs.getString("jam_rawat"),rs.getString("satu_sehat_observationttvtensi")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : "+e);
+            } finally{
+                if(rs!=null){
+                    rs.close();
+                }
+                if(ps!=null){
+                    ps.close();
+                }
+            }
+        }catch(Exception e){
+            System.out.println("Notifikasi : "+e);
+        }
+        LCount.setText(""+tabModeTensi.getRowCount());
     }
     
     public void isCek(){
