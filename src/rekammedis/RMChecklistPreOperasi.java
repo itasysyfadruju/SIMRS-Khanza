@@ -77,7 +77,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 28; i++) {
+        for (i = 0; i < 35; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(105);
@@ -122,11 +122,33 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
             }else if(i==20){
                 column.setPreferredWidth(109);
             }else if(i==21){
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
             }else if(i==22){
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(120);
             }else if(i==23){
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
+            }else if(i==24){
+                column.setPreferredWidth(120);
+            }else if(i==25){
+                column.setPreferredWidth(90);
+            }else if(i==26){
+                column.setPreferredWidth(120);
+            }else if(i==27){
+                column.setPreferredWidth(90);
+            }else if(i==28){
+                column.setPreferredWidth(120);
+            }else if(i==29){
+                column.setPreferredWidth(90);
+            }else if(i==30){
+                column.setPreferredWidth(120);
+            }else if(i==31){
+                column.setPreferredWidth(90);
+            }else if(i==32){
+                column.setPreferredWidth(150);
+            }else if(i==33){
+                column.setPreferredWidth(90);
+            }else if(i==34){
+                column.setPreferredWidth(150);
             }
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
@@ -1999,10 +2021,45 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
 
     private void getData() {
         if(tbObat.getSelectedRow()!= -1){
+            /*"No.Rawat"0,"No.RM"1,"Nama Pasien"2,"Tgl.Lahir"3,"J.K."4,"Tanggal"5,"SN/CN"6,"Tindakan"7,"Kode Dokter Bedah"8,"Nama Dokter Bedah"9,
+            "Kode Dokter Anest"10,"Nama Dokter Anestesi"11,"Identitas"12,"Keadaan Umum"13,"Penandaan Area Operasi"14,"Surat Ijin Bedah"15,"Surat Ijin Anestesi"16,
+            "Surat Ijin Transfusi"17,"Persiapan Darah"18,"Keterangan Persiapan Darah"19,"Perlengkapan Khusus"20,"Radiologi"21,"Keterangan Radiologi"22,
+            "EKG"23,"Keterangan EKG"24,"USG"25,"Keterangan USG"26,"CT Scan"27,"Keterangan CT Scan"28,"MRI"29,"Keterangan MRI"30,"NIP Ruangan","Petugas Ruangan",
+            "NIP OK","Petugas Ruang OK"*/
             TNoRw.setText(tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
             TNoRM.setText(tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
             TPasien.setText(tbObat.getValueAt(tbObat.getSelectedRow(),2).toString());
             TglLahir.setText(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
+            Valid.SetTgl2(Tanggal,tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
+            SNCN.setText(tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
+            Tindakan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString());
+            KodeDokterBedah.setText(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString());
+            NamaDokterBedah.setText(tbObat.getValueAt(tbObat.getSelectedRow(),9).toString());
+            KodeDokterAnestesi.setText(tbObat.getValueAt(tbObat.getSelectedRow(),10).toString());
+            NamaDokterAnestesi.setText(tbObat.getValueAt(tbObat.getSelectedRow(),11).toString());
+            Identitas.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),12).toString());
+            KeadaanUmum.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),13).toString());
+            AreaOperasi.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),14).toString());
+            IjinBedah.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),15).toString());
+            IjinAnestesi.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),16).toString());
+            IjinTransfusi.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),17).toString());
+            PersiapanDarah.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),18).toString());
+            KeteranganPersiapanDarah.setText(tbObat.getValueAt(tbObat.getSelectedRow(),19).toString());
+            PerlengkapanKhusus.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),20).toString());
+            Radiologi.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),21).toString());
+            KeteranganRadiologi.setText(tbObat.getValueAt(tbObat.getSelectedRow(),22).toString());
+            EKG.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),23).toString());
+            KeteranganEKG.setText(tbObat.getValueAt(tbObat.getSelectedRow(),24).toString());
+            USG.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),25).toString());
+            KeteranganUSG.setText(tbObat.getValueAt(tbObat.getSelectedRow(),26).toString());
+            CTScan.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),27).toString());
+            KeteranganCTScan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),28).toString());
+            MRI.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),29).toString());
+            KeteranganMRI.setText(tbObat.getValueAt(tbObat.getSelectedRow(),30).toString());
+            KdPetugasRuangan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),31).toString());
+            NmPetugasRuangan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),32).toString());
+            KdPetugasOK.setText(tbObat.getValueAt(tbObat.getSelectedRow(),33).toString());
+            NmPetugasOK.setText(tbObat.getValueAt(tbObat.getSelectedRow(),34).toString());
         }
     }
     private void isRawat() {
