@@ -94,13 +94,13 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
             }else if(i==6){
                 column.setPreferredWidth(90);
             }else if(i==7){
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(160);
             }else if(i==8){
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(100);
             }else if(i==9){
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(160);
             }else if(i==10){
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(100);
             }else if(i==11){
                 column.setPreferredWidth(150);
             }else if(i==12){
@@ -108,13 +108,25 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
             }else if(i==13){
                 column.setPreferredWidth(85);
             }else if(i==14){
-                column.setPreferredWidth(95);
+                column.setPreferredWidth(130);
             }else if(i==15){
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(88);
             }else if(i==16){
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(98);
             }else if(i==17){
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(102);
+            }else if(i==18){
+                column.setPreferredWidth(89);
+            }else if(i==19){
+                column.setPreferredWidth(149);
+            }else if(i==20){
+                column.setPreferredWidth(109);
+            }else if(i==21){
+                column.setPreferredWidth(60);
+            }else if(i==22){
+                column.setPreferredWidth(100);
+            }else if(i==23){
+                column.setPreferredWidth(60);
             }
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
