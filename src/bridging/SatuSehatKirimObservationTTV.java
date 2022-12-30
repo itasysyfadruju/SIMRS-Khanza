@@ -611,6 +611,12 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         tbKesadaran = new widget.Table();
         Scroll6 = new widget.ScrollPane();
         tbTensi = new widget.Table();
+        Scroll7 = new widget.ScrollPane();
+        tbTB = new widget.Table();
+        Scroll8 = new widget.ScrollPane();
+        tbBB = new widget.Table();
+        Scroll9 = new widget.ScrollPane();
+        tbLP = new widget.Table();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -763,7 +769,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(85, 23));
         panelGlass9.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-12-2022" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-12-2022" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -776,7 +782,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass9.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-12-2022" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-12-2022" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -838,7 +844,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         tbSuhu.setName("tbSuhu"); // NOI18N
         Scroll.setViewportView(tbSuhu);
 
-        TabRawat.addTab("Suhu (°C)", Scroll);
+        TabRawat.addTab("Suhu", Scroll);
 
         Scroll1.setComponentPopupMenu(jPopupMenu1);
         Scroll1.setName("Scroll1"); // NOI18N
@@ -849,7 +855,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         tbRespirasi.setName("tbRespirasi"); // NOI18N
         Scroll1.setViewportView(tbRespirasi);
 
-        TabRawat.addTab("Respirasi (/menit)", Scroll1);
+        TabRawat.addTab("Respirasi", Scroll1);
 
         Scroll2.setComponentPopupMenu(jPopupMenu1);
         Scroll2.setName("Scroll2"); // NOI18N
@@ -860,7 +866,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         tbNadi.setName("tbNadi"); // NOI18N
         Scroll2.setViewportView(tbNadi);
 
-        TabRawat.addTab("Nadi (/menit)", Scroll2);
+        TabRawat.addTab("Nadi", Scroll2);
 
         Scroll3.setComponentPopupMenu(jPopupMenu1);
         Scroll3.setName("Scroll3"); // NOI18N
@@ -871,7 +877,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         tbSpO2.setName("tbSpO2"); // NOI18N
         Scroll3.setViewportView(tbSpO2);
 
-        TabRawat.addTab("SpO2 (%)", Scroll3);
+        TabRawat.addTab("SpO2", Scroll3);
 
         Scroll4.setComponentPopupMenu(jPopupMenu1);
         Scroll4.setName("Scroll4"); // NOI18N
@@ -882,7 +888,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         tbGCS.setName("tbGCS"); // NOI18N
         Scroll4.setViewportView(tbGCS);
 
-        TabRawat.addTab("GCS (E,V,M)", Scroll4);
+        TabRawat.addTab("GCS", Scroll4);
 
         Scroll5.setComponentPopupMenu(jPopupMenu1);
         Scroll5.setName("Scroll5"); // NOI18N
@@ -904,7 +910,40 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         tbTensi.setName("tbTensi"); // NOI18N
         Scroll6.setViewportView(tbTensi);
 
-        TabRawat.addTab("Tensi (mmHg)", Scroll6);
+        TabRawat.addTab("Tensi", Scroll6);
+
+        Scroll7.setComponentPopupMenu(jPopupMenu1);
+        Scroll7.setName("Scroll7"); // NOI18N
+        Scroll7.setOpaque(true);
+
+        tbTB.setAutoCreateRowSorter(true);
+        tbTB.setComponentPopupMenu(jPopupMenu1);
+        tbTB.setName("tbTB"); // NOI18N
+        Scroll7.setViewportView(tbTB);
+
+        TabRawat.addTab("TB", Scroll7);
+
+        Scroll8.setComponentPopupMenu(jPopupMenu1);
+        Scroll8.setName("Scroll8"); // NOI18N
+        Scroll8.setOpaque(true);
+
+        tbBB.setAutoCreateRowSorter(true);
+        tbBB.setComponentPopupMenu(jPopupMenu1);
+        tbBB.setName("tbBB"); // NOI18N
+        Scroll8.setViewportView(tbBB);
+
+        TabRawat.addTab("BB", Scroll8);
+
+        Scroll9.setComponentPopupMenu(jPopupMenu1);
+        Scroll9.setName("Scroll9"); // NOI18N
+        Scroll9.setOpaque(true);
+
+        tbLP.setAutoCreateRowSorter(true);
+        tbLP.setComponentPopupMenu(jPopupMenu1);
+        tbLP.setName("tbLP"); // NOI18N
+        Scroll9.setViewportView(tbLP);
+
+        TabRawat.addTab("LP", Scroll9);
 
         internalFrame1.add(TabRawat, java.awt.BorderLayout.CENTER);
 
@@ -2217,7 +2256,6 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private widget.Button BtnAll;
     private widget.Button BtnAll1;
     private widget.Button BtnCari;
     private widget.Button BtnKeluar;
@@ -2234,6 +2272,9 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
     private widget.ScrollPane Scroll4;
     private widget.ScrollPane Scroll5;
     private widget.ScrollPane Scroll6;
+    private widget.ScrollPane Scroll7;
+    private widget.ScrollPane Scroll8;
+    private widget.ScrollPane Scroll9;
     private widget.TextBox TCari;
     private javax.swing.JTabbedPane TabRawat;
     private widget.InternalFrame internalFrame1;
@@ -2247,12 +2288,15 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
     private widget.panelisi panelGlass9;
     private javax.swing.JMenuItem ppBersihkan;
     private javax.swing.JMenuItem ppPilihSemua;
+    private widget.Table tbBB;
     private widget.Table tbGCS;
     private widget.Table tbKesadaran;
+    private widget.Table tbLP;
     private widget.Table tbNadi;
     private widget.Table tbRespirasi;
     private widget.Table tbSpO2;
     private widget.Table tbSuhu;
+    private widget.Table tbTB;
     private widget.Table tbTensi;
     // End of variables declaration//GEN-END:variables
     
